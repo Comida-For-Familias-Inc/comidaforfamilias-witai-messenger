@@ -1,8 +1,10 @@
 require("dotenv").config();
+
 import request from "request";
 
 const FB_VERIFY_TOKEN = process.env.FB_VERIFY_TOKEN;
-console.log(FB_VERIFY_TOKEN)
+const wit_handler = require("./wit_handler");
+
 
 let test = (req, res) => {
     return res.send("HELLO AGIAN");
@@ -36,7 +38,7 @@ let getWebhook = (req, res) => {
 
 let postWebhook = (req, res) => {
     let body = req.body;
-
+/*
     // Checks this is an event from a page subscription
     if (body.object === 'page') {
 
@@ -66,6 +68,58 @@ let postWebhook = (req, res) => {
         // Returns a '404 Not Found' if event is not from a page subscription
         res.sendStatus(404);
     }
+*/
+
+//changing data to body
+if (body.object === "page") {
+    body.entry.forEach(entry => {
+      entry.messaging.forEach(event => {
+        if (event.message && !event.message.is_echo) {
+          // Yay! We got a new message!
+          // We retrieve the Facebook user ID of the sender
+          const sender = event.sender.id;
+
+          // We could retrieve the user's current session, or create one if it doesn't exist
+          // This is useful if we want our bot to figure out the conversation history
+          // const sessionId = findOrCreateSession(sender);
+
+          // We retrieve the message content
+          const { text, attachments } = event.message;
+
+          if (attachments) {
+            // We received an attachment
+            // Let's reply with an automatic message
+            fbMessage(
+              sender,
+              "Sorry I can only process text messages for now."
+            ).catch(console.error);
+          } else if (text) {
+            // We received a text message
+            // Let's run /message on the text to extract some entities, intents and traits
+            wit
+              .message(text)
+              .then(res => handler.responseFromWit(res))
+              .then(msg => {
+                fbMessage(sender, msg);
+              })
+              .catch(err => {
+                console.error(
+                  "Oops! Got an error from Wit: ",
+                  err.stack || err
+                );
+              });
+          }
+        } else {
+          console.log("received event", JSON.stringify(event));
+        }
+      });
+    });
+  }
+res.sendStatus(200);
+
+
+
+
 }
 
 module.exports = {
@@ -145,6 +199,8 @@ function handlePostback(sender_psid, received_postback) {
     callSendAPI(sender_psid, response);
 }
 
+//callSendAPI will take what the sender is saying and make it
+//into a response.
 function callSendAPI(sender_psid, response) {
     // Construct the message body
     let request_body = {
@@ -183,4 +239,5 @@ function handleMessage(sender_psid, message) {
         // default logic
         callSendAPI(sender_psid, 'default');
     }
+
 }
