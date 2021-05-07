@@ -37,7 +37,7 @@ let getWebhook = (req, res) => {
 let postWebhook = (req, res) => {
   // Parse the request body from the POST
   let body = req.body;
-
+console.log(body);
   // Check the webhook event is from a Page subscription
   if (body.object === 'page') {
 
@@ -145,7 +145,7 @@ function callSendAPI(sender_psid, response) {
 
     // Send the HTTP request to the Messenger Platform
     request({
-        "uri": "https://graph.facebook.com/v7.0/me/messages",
+        "uri": "https://graph.facebook.com/v10.0/me/messages",
         "qs": { "access_token": process.env.PAGE_ACCESS_TOKEN },
         "method": "POST",
         "json": request_body
