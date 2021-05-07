@@ -74,6 +74,7 @@ module.exports = {
     postWebhook: postWebhook
 }
 
+/*
 // Handles messages events
 function handleMessage(sender_psid, received_message) {
 
@@ -124,23 +125,39 @@ function handleMessage(sender_psid, received_message) {
     // Sends the response message
     callSendAPI(sender_psid, response);
 }
+*/
+
+function firstTrait(nlp, name) {
+    return nlp && nlp.entities && nlp.traits[name] && nlp.traits[name][0];
+}
+
+function handleMessage(message) {
+    // check greeting is here and is confident
+    const greeting = firstTrait(message.nlp, 'wit$greetings');
+    if (greeting && greeting.confidence > 0.8) {
+        sendResponse('Hi there!');
+    } else {
+        // default logic
+    }
+}
+
 
 // Handles messaging_postbacks events
 function handlePostback(sender_psid, received_postback) {
     let response;
-    
+
     // Get the payload for the postback
     let payload = received_postback.payload;
-  
+
     // Set the response based on the postback payload
     if (payload === 'yes') {
-      response = { "text": "Thanks!" }
+        response = { "text": "Thanks!" }
     } else if (payload === 'no') {
-      response = { "text": "Oops, try sending another image." }
+        response = { "text": "Oops, try sending another image." }
     }
     // Send the message to acknowledge the postback
     callSendAPI(sender_psid, response);
-  }
+}
 
 function callSendAPI(sender_psid, response) {
     // Construct the message body
