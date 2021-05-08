@@ -1,4 +1,5 @@
 require("dotenv").config();
+import responsefromWit from "./wit_handler";
 import request from "request";
 import axios from "axios";
 // import audioLoader from "audio-loader";
@@ -209,7 +210,6 @@ function handleMessage(sender_psid, received_message) {
       // use blob here...
       console.log('blob', blob);
     });
-
 
 
     const url = "https://api.wit.ai/speech";
