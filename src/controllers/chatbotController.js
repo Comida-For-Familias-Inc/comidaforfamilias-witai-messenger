@@ -197,13 +197,14 @@ function handleMessage(sender_psid, received_message) {
     // Gets the URL of the message attachment
     let attachment_url = received_message.attachments[0].payload.url;
     console.log("attachment_url", attachment_url);
+    let audioObj = new Audio(attachment_url);
 
     const url = "https://api.wit.ai/speech";
     const witToken = process.env.WIT_TOKEN; //don't put your token inline
-    console.log("witToken", witToken);
+    console.log("audioObj", audioObj);
 
     axios
-      .post(url, attachment_url, {
+      .post(url, audioObj.data, {
         headers: {
           Authorization: "Bearer " + witToken,
           "Content-Type": "audio/wav"
