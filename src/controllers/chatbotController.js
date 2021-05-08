@@ -1,10 +1,8 @@
 require("dotenv").config();
-
 import request from "request";
 
 const FB_VERIFY_TOKEN = process.env.FB_VERIFY_TOKEN;
-const wit_handler = require("./wit_handler");
-
+console.log(FB_VERIFY_TOKEN)
 
 let test = (req, res) => {
     return res.send("HELLO AGIAN");
@@ -147,8 +145,6 @@ function handlePostback(sender_psid, received_postback) {
     callSendAPI(sender_psid, response);
 }
 
-//callSendAPI will take what the sender is saying and make it
-//into a response.
 function callSendAPI(sender_psid, response) {
     // Construct the message body
     let request_body = {
@@ -187,5 +183,4 @@ function handleMessage(sender_psid, message) {
         // default logic
         callSendAPI(sender_psid, 'default');
     }
-
 }
