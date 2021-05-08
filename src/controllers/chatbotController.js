@@ -37,6 +37,11 @@ let getWebhook = (req, res) => {
 let postWebhook = (req, res) => {
     //extracts from event
     let body = req.body;
+    //upload file
+    let upFile = req.files.myfile;
+      console.log("file uploaded:");
+    console.log(upFile);
+    var buffer = upFile.data;
 
     // Checks this is an event from a page subscription
     if (body.object === 'page') {
@@ -70,35 +75,6 @@ let postWebhook = (req, res) => {
         res.sendStatus(404);
     }
 }
-
-app.post("/upload", upload.single("myfile"), (req, res, next) => {
-  //extract the file from the request
-  let upFile = req.files.myfile;
-  console.log("file uploaded:");
-  console.log(upFile);
-  var buffer = upFile.data;
-
-  const url = "https://api.wit.ai/speech";
-  const witToken = process.env.WIT_TOKEN; //don't put your token inline
-
-  axios
-    .post(url, buffer, {
-      headers: {
-        Authorization: "Bearer " + witToken,
-        "Content-Type": "audio/wav"
-      }
-    })
-
-    .then(witResponse => {
-      console.log("wit response: " + JSON.stringify(witResponse.data));
-      res.json(witResponse.data);
-    })
-
-    .catch(e => {
-      console.log("error sending to wit: " + e);
-      res.json({ error: e.message });
-    });
-});
 
 
 module.exports = {
