@@ -2,6 +2,7 @@ require("dotenv").config();
 import request from "request";
 
 const FB_VERIFY_TOKEN = process.env.FB_VERIFY_TOKEN;
+const WIT_TOKEN = process.env.WIT_TOKEN;
 console.log(FB_VERIFY_TOKEN)
 
 let test = (req, res) => {
@@ -50,7 +51,7 @@ let postWebhook = (req, res) => {
 
             // Gets the body of the webhook event
             let webhook_event = entry.messaging[0];
-
+find
             // Get the sender PSID
             let sender_psid = webhook_event.sender.id;
             console.log('Sender PSID: ' + sender_psid);
@@ -191,12 +192,32 @@ function handleMessage(sender_psid, received_message) {
     response = {
       "text": `You sent the message: "${received_message.text}". Now send me an attachment!`
     }
-
   } else if (received_message.attachments) {
     // Gets the URL of the message attachment
     let attachment_url = received_message.attachments[0].payload.url;
     console.log("attachment_url", attachment_url);
-  } 
+
+    const url = "https://api.wit.ai/speech";
+    const witToken = process.env.WIT_TOKEN; //don't put your token inline
+
+    axios
+      .post(url, attachment_url, {
+        headers: {
+          Authorization: "Bearer " + witToken,
+          "Content-Type": "audio/wav"
+        }
+      })
+
+      .then(witResponse => {
+        console.log("wit response: " + JSON.stringify(witResponse.data));
+        res.json(witResponse.data);
+      })
+
+      .catch(e => {
+        console.log("error sending to wit: " + e);
+        res.json({ error: e.message });
+      });
+    } 
   
   // Sends the response message
   // callSendAPI(sender_psid, response); 
@@ -210,7 +231,8 @@ function handleMessage(sender_psid, received_message) {
   if (greeting && greeting.confidence > 0.8) {
       callSendAPI(sender_psid,'Hi there!');
   } else {
-      // default logic
+      // default
+ logic
       callSendAPI(sender_psid, 'default');
   }
 }
