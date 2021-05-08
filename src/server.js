@@ -7,7 +7,8 @@ import initWebRoutes from "./routes/web";
 //dependencies
 /*const fileUpload = require("express-fileupload");
 const multer = require("multer");
-const axios = require("axios");*/
+*/
+const axios = require("axios");
 
 let app = express();
 
