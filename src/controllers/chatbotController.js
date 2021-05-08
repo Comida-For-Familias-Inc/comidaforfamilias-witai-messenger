@@ -44,11 +44,6 @@ let getWebhook = (req, res) => {
 let postWebhook = (req, res) => {
   //extracts from event
   let body = req.body;
-  //upload file
-  // let upFile = req.files.myfile;
-  //   console.log("file uploaded:");
-  // console.log(upFile);
-  // var buffer = upFile.data;
 
   // Checks this is an event from a page subscription
   if (body.object === 'page') {
@@ -204,12 +199,12 @@ function handleMessage(sender_psid, received_message) {
     console.log("attachment_url", attachment_url);
     // let audioObj = new Audio(attachment_url);
 
-    fetch(attachment_url)
-    .then(response => response.blob())
-    .then(blob => {
-      // use blob here...
-      console.log('blob', blob);
-    });
+    // fetch(attachment_url)
+    // .then(response => response.blob())
+    // .then(blob => {
+    //   // use blob here...
+    //   console.log('blob', blob);
+    // });
 
 
     const url = "https://api.wit.ai/speech";
@@ -257,4 +252,5 @@ function handleMessage(sender_psid, received_message) {
       callSendAPI(sender_psid, 'default');
     }
   }
-}
+} 
+
