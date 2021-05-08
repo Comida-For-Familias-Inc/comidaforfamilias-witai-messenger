@@ -233,19 +233,20 @@ function handleMessage(sender_psid, received_message) {
     });
 
 
-  // Sends the response message
-  // callSendAPI(sender_psid, response); 
+    // Sends the response message
+    // callSendAPI(sender_psid, response); 
 
-  // check greeting is here and is confident
-  const greeting = firstTrait(received_message.nlp, 'wit$greetings');
-  console.log("GREETING", greeting);
+    // check greeting is here and is confident
+    const greeting = firstTrait(received_message.nlp, 'wit$greetings');
+    console.log("GREETING", greeting);
 
-  console.log("received_message", received_message);
-  // console.log("CallSENDAPI", callSendAPI());
-  if (greeting && greeting.confidence > 0.8) {
-    callSendAPI(sender_psid, 'Hi there!');
-  } else {
-    // default
-    callSendAPI(sender_psid, 'default');
+    console.log("received_message", received_message);
+    // console.log("CallSENDAPI", callSendAPI());
+    if (greeting && greeting.confidence > 0.8) {
+      callSendAPI(sender_psid, 'Hi there!');
+    } else {
+      // default
+      callSendAPI(sender_psid, 'default');
+    }
   }
 }
