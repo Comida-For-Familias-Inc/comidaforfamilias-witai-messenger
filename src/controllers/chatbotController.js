@@ -184,7 +184,7 @@ function firstTrait(nlp, name) {
 }
 
 
-function handleMessage(message) {
+function handleMessage(sender_psid, message) {
   // check greeting is here and is confident
   const greeting = firstTrait(message.nlp, 'wit$greetings');
   if (greeting && greeting.confidence > 0.8) {
