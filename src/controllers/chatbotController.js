@@ -44,6 +44,7 @@ let postWebhook = (req, res) => {
 
             // Gets the body of the webhook event
             let webhook_event = entry.messaging[0];
+            console.log("RECEIVED_MESSAGE!!!")
             console.log(entry.messaging);
 
 
@@ -177,9 +178,6 @@ function firstTrait(nlp, name) {
 function handleMessage(sender_psid, message) {
     // check greeting is here and is confident
     const greeting = firstTrait(message.nlp, 'wit$greetings');
-    console.log(greeting);
-    console.log(message);
-    console.log(callSendAPI());
     if (greeting && greeting.confidence > 0.8) {
         callSendAPI(sender_psid,'Hi there!');
     } else {
