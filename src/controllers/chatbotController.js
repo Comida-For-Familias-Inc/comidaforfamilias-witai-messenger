@@ -183,6 +183,19 @@ function firstTrait(nlp, name) {
   return nlp && nlp.entities && nlp.traits[name] && nlp.traits[name][0];
 }
 
+
+function handleMessage(message) {
+  // check greeting is here and is confident
+  const greeting = firstTrait(message.nlp, 'wit$greetings');
+  if (greeting && greeting.confidence > 0.8) {
+    callSendAPI(sender_psid,'Hi there!');
+  } else { 
+    // default logic
+    callSendAPI(sender_psid,'default');
+  }
+}
+
+/*
 function handleMessage(sender_psid, received_message) {
   console.log("Start of handleMessage");
   let response;
@@ -194,7 +207,7 @@ function handleMessage(sender_psid, received_message) {
     response = {
       "text": `You sent the message: "${received_message.text}". Now send me an attachment!`
     }
-  } else 
+  } else if (received_message.attachments)
   
   /*VOICE MESSET
   
@@ -217,9 +230,6 @@ function handleMessage(sender_psid, received_message) {
     const witToken = process.env.WIT_TOKEN; //don't put your token inline
     // console.log("audioObj", audioObj);
 
-    audioLoader(attachment_url).then(function (buffer) {
-      // buffer is an AudioBuffer
-      // play(buffer)
       console.log("buffer", buffer);
 
       axios
@@ -239,8 +249,8 @@ function handleMessage(sender_psid, received_message) {
           console.log("error sending to wit: " + e);
           // res.json({ error: e.message });
         });
-    });
-    */
+    }
+    
     // Sends the response message
     // callSendAPI(sender_psid, response); 
 
@@ -261,3 +271,4 @@ function handleMessage(sender_psid, received_message) {
   }
 } 
 
+*/
