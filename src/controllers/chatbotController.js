@@ -230,7 +230,6 @@ function handleMessage(sender_psid, received_message) {
           console.log("error sending to wit: " + e);
           // res.json({ error: e.message });
         });
-    }
     });
 
 
