@@ -5,7 +5,7 @@ const FB_VERIFY_TOKEN = process.env.FB_VERIFY_TOKEN;
 console.log(FB_VERIFY_TOKEN)
 
 let test = (req, res) => {
-    return res.send("HELLO AGIAN");
+    return res.send("HELLO World");
 }
 
 let getWebhook = (req, res) => {
