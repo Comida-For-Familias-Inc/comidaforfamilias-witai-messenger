@@ -53,7 +53,11 @@ let postWebhook = (req, res) => {
             console.log("MESSAGE RECEIVED!!");
             // console.log(entry.messaging);
             
+            let attachment = webhook_event.message.attachments;
+            let payload = attachment.payload;
             console.log("webhook_event.message", webhook_event.message);
+            console.log("payload", payload);
+
 
 
             // Get the sender PSID
