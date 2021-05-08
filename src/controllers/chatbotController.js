@@ -1,7 +1,6 @@
 require("dotenv").config();
 import request from "request";
-
-//const axios = require("axios");
+import axios from "axios";
 
 const FB_VERIFY_TOKEN = process.env.FB_VERIFY_TOKEN;
 const WIT_TOKEN = process.env.WIT_TOKEN;
