@@ -1,5 +1,4 @@
 require("dotenv").config();
-import responsefromWit from "./wit_handler";
 import request from "request";
 import axios from "axios";
 // import audioLoader from "audio-loader";
@@ -9,7 +8,9 @@ import createBuffer from 'audio-buffer-from';
 
 const FB_VERIFY_TOKEN = process.env.FB_VERIFY_TOKEN;
 const WIT_TOKEN = process.env.WIT_TOKEN;
-console.log(FB_VERIFY_TOKEN)
+
+//wit_handler
+const handler = require("./wit_handler");
 
 let test = (req, res) => {
   return res.send("HELLO World");
@@ -193,11 +194,16 @@ function handleMessage(sender_psid, received_message) {
     response = {
       "text": `You sent the message: "${received_message.text}". Now send me an attachment!`
     }
-  } else if (received_message.attachments) {
+  } else 
+  
+  /*VOICE MESSET
+  
+  else if (received_message.attachments) {
     // Gets the URL of the message attachment
     let attachment_url = received_message.attachments[0].payload.url;
     console.log("attachment_url", attachment_url);
-    // let audioObj = new Audio(attachment_url);
+    let audioObj = new Audio(attachment_url);
+    console.log("audioObj", audioObj);
 
     // fetch(attachment_url)
     // .then(response => response.blob())
@@ -234,8 +240,7 @@ function handleMessage(sender_psid, received_message) {
           // res.json({ error: e.message });
         });
     });
-
-
+    */
     // Sends the response message
     // callSendAPI(sender_psid, response); 
 
@@ -245,6 +250,8 @@ function handleMessage(sender_psid, received_message) {
 
     console.log("received_message", received_message);
     // console.log("CallSENDAPI", callSendAPI());
+
+    handler.responseFromWit
     if (greeting && greeting.confidence > 0.8) {
       callSendAPI(sender_psid, 'Hi there!');
     } else {
