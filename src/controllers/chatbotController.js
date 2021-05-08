@@ -38,10 +38,10 @@ let postWebhook = (req, res) => {
     //extracts from event
     let body = req.body;
     //upload file
-    let upFile = req.files.myfile;
-      console.log("file uploaded:");
-    console.log(upFile);
-    var buffer = upFile.data;
+    // let upFile = req.files.myfile;
+    //   console.log("file uploaded:");
+    // console.log(upFile);
+    // var buffer = upFile.data;
 
     // Checks this is an event from a page subscription
     if (body.object === 'page') {
@@ -50,9 +50,10 @@ let postWebhook = (req, res) => {
 
             // Gets the body of the webhook event
             let webhook_event = entry.messaging[0];
-            console.log("MESSAGE RECEIVED!!")
-            console.log(entry.messaging);
+            console.log("MESSAGE RECEIVED!!");
+            // console.log(entry.messaging);
             
+            console.log("webhook_event.message", webhook_event.message);
 
 
             // Get the sender PSID
@@ -75,6 +76,7 @@ let postWebhook = (req, res) => {
         res.sendStatus(404);
     }
 }
+
 
 
 module.exports = {

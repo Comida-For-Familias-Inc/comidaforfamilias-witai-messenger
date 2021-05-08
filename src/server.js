@@ -4,6 +4,11 @@ import bodyParser from "body-parser";
 import viewEngine from "./config/viewEngine";
 import initWebRoutes from "./routes/web";
 
+//dependencies
+const fileUpload = require("express-fileupload");
+const multer = require("multer");
+const axios = require("axios");
+
 let app = express();
 
 //config view engine
