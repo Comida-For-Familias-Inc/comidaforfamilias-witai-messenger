@@ -233,7 +233,6 @@ function handleMessage(sender_psid, received_message) {
       callSendAPI(sender_psid,'Hi there!');
   } else {
       // default
- logic
       callSendAPI(sender_psid, 'default');
   }
 }
