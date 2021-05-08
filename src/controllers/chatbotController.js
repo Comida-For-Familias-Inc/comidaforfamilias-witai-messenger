@@ -200,6 +200,7 @@ function handleMessage(sender_psid, received_message) {
 
     const url = "https://api.wit.ai/speech";
     const witToken = process.env.WIT_TOKEN; //don't put your token inline
+    console.log("witToken", witToken);
 
     axios
       .post(url, attachment_url, {
@@ -211,12 +212,12 @@ function handleMessage(sender_psid, received_message) {
 
       .then(witResponse => {
         console.log("wit response: " + JSON.stringify(witResponse.data));
-        res.json(witResponse.data);
+        // res.json(witResponse.data);
       })
 
       .catch(e => {
         console.log("error sending to wit: " + e);
-        res.json({ error: e.message });
+        // res.json({ error: e.message });
       });
     } 
   
