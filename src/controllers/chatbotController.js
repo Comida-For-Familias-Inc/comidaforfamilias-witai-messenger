@@ -1,9 +1,10 @@
 require("dotenv").config();
 import request from "request";
 import axios from "axios";
-import audioLoader from "audio-loader";
+// import audioLoader from "audio-loader";
 // var load = require('audio-loader')
-
+import createBuffer from 'audio-buffer-from';
+// var createBuffer = require('audio-buffer-from')
 
 const FB_VERIFY_TOKEN = process.env.FB_VERIFY_TOKEN;
 const WIT_TOKEN = process.env.WIT_TOKEN;
@@ -201,6 +202,13 @@ function handleMessage(sender_psid, received_message) {
     let attachment_url = received_message.attachments[0].payload.url;
     console.log("attachment_url", attachment_url);
     // let audioObj = new Audio(attachment_url);
+
+    fetch(attachment_url)
+    .then(response => response.blob())
+    .then(blob => {
+      // use blob here...
+      console.log('blob', blob);
+    });
 
 
 
