@@ -50,13 +50,14 @@ let postWebhook = (req, res) => {
 
             // Gets the body of the webhook event
             let webhook_event = entry.messaging[0];
-            console.log("MESSAGE RECEIVED!!");
+            // console.log("MESSAGE RECEIVED!!");
             // console.log(entry.messaging);
             
-            let attachment = webhook_event.message.attachments;
-            let payload = attachment.payload;
-            console.log("webhook_event.message", webhook_event.message);
-            console.log("payload", payload);
+            // let message = webhook_event.message;
+            // let attachment = webhook_event.message?.attachments;
+            // let payload = attachment?.payload;
+            // console.log("webhook_event.message", webhook_event.message);
+            // console.log("payload", payload);
 
 
 
@@ -189,18 +190,37 @@ function firstTrait(nlp, name) {
     return nlp && nlp.entities && nlp.traits[name] && nlp.traits[name][0];
 }
 
-function handleMessage(sender_psid, message) {
-    // check greeting is here and is confident
-    const greeting = firstTrait(message.nlp, 'wit$greetings');
-    console.log("Start of handleMessage")
-    console.log("GRETTING", greeting);
+function handleMessage(sender_psid, received_message) {
+  console.log("Start of handleMessage");
+  let response;
 
-    console.log("MESSAGE", message);
-    console.log("CallSENDAPI", callSendAPI());
-    if (greeting && greeting.confidence > 0.8) {
-        callSendAPI(sender_psid,'Hi there!');
-    } else {
-        // default logic
-        callSendAPI(sender_psid, 'default');
+ // Checks if the message contains text
+  if (received_message.text) {
+    // Creates the payload for a basic text message, which
+    // will be added to the body of our request to the Send API
+    response = {
+      "text": `You sent the message: "${received_message.text}". Now send me an attachment!`
     }
+
+  } else if (received_message.attachments) {
+    // Gets the URL of the message attachment
+    let attachment_url = received_message.attachments[0].payload.url;
+    console.log("attachment_url", attachment_url);
+  } 
+  
+  // Sends the response message
+  // callSendAPI(sender_psid, response); 
+
+  // check greeting is here and is confident
+  const greeting = firstTrait(received_message.nlp, 'wit$greetings');
+  console.log("GREETING", greeting);
+
+  console.log("received_message", received_message);
+  // console.log("CallSENDAPI", callSendAPI());
+  if (greeting && greeting.confidence > 0.8) {
+      callSendAPI(sender_psid,'Hi there!');
+  } else {
+      // default logic
+      callSendAPI(sender_psid, 'default');
+  }
 }
