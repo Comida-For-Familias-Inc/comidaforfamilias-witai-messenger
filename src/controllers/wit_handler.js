@@ -1,3 +1,8 @@
+//MongoClient
+//var MongoClient = require('mongodb').MongoClient;
+//var url = "mongodb://localhost:27017/mydb";
+
+
 //main function for all messages
 export function responseFromWit(intentData, entitiesData, traitsData) {
   //testing
@@ -9,12 +14,16 @@ export function responseFromWit(intentData, entitiesData, traitsData) {
   //let boolean = traitsData.length > 0;
   console.log("BOOLEAN RESULT: ", traitsData['wit$bye'] && traitsData['wit$greetings'])
 
-  if (intentData[0]){
+  if(!intentData[0] && traitsData = {}){
+    return handleGibberish();
+  }
+
+  else if (intentData[0]){
     const intent = intentData[0];
     const intentname = intentData[0].name;
     const intentconfidence = intentData[0].confidence;
 
-    if(intentconfidence > 0.8){
+    //if(intentconfidence > 0.8){
     switch (intentname) {
       case "greetings":
         return handleGreeting();
@@ -53,7 +62,7 @@ export function responseFromWit(intentData, entitiesData, traitsData) {
         return handleOrganizationPurpose();
         break;
       }
-    }
+    //}
   }
 
   else if(traitsData != {}){
@@ -91,9 +100,9 @@ export function responseFromWit(intentData, entitiesData, traitsData) {
       break;
     }
   }
-  else {
+  /*else {
     return handleGibberish();
-  }
+  }*/
 
 
   console.log("data from wit (wit_handler.js):");
@@ -148,11 +157,13 @@ export function handleGibberish() {
 }
 
 function handleGreeting(){
-  let date = new Date();
+  //let date = new Date();
   //var offset = new Date().getTimezoneOffset();
-  let time = date.getHours();
+  //let time = date.getHours();
   //const greetingtest = entities['wit$greetings:greetings'];
   //console.log(greetingstest);
+
+  const time = Intl.DateTimeFormat().resolvedOptions().timeZone;
   
   let greeting = ""
 
@@ -164,7 +175,7 @@ function handleGreeting(){
   } else if (time < 20){
     greeting = "good evening"
   } else {
-    greeting = "good night"
+    greeting = "Hello there"
   }
 
   return greeting;
@@ -174,11 +185,31 @@ function handleGreeting(){
 
 //testing functions
 function handleDonate() {
-  return "donate"
+  let paypal = "Paypal";
+  let paypalLink = str.link("https://www.paypal.com/us/fundraiser/charity/3792494");
+  
+  let message = "How would you like to donate?\n" + paypalLink;
+
+  return message
 }
 
 function handleGetJobList() {
-  return "get job list"
+  /*MongoClient.connect(url, function(err, db) {
+    if (err) throw err;
+    //Return only the "name" field in the result:
+    db.collection("customers").find({}, { projection: { _id: 0, name: 1 } }).toArray(function(err, result) {
+      if (err) throw err;
+      console.log(result);
+      db.close();
+    });
+  });
+*/
+  let page = "website";
+  let pageLink = str.link("https://comidaforfamilias.org/getinvolved/positions");
+  
+  let message = "Positions available include recruiter, marketer, developer, designer, data scientist and so much more. Find out more about these position on" + page;
+
+  return message;
 }
 
 function handleGetLocation() {
@@ -189,7 +220,18 @@ function handleGetNews() {
   return "get news"
 }
 function handleGetProjects() {
-  return "get projects"
+  let page = "website";
+  let pageLink = str.link("https://comidaforfamilias.org/projectList");
+
+  let message = ""
+  
+  //message if they ask for current projects
+  message = "Some projects we are currently working on are: \nTasteMatch." + "To Find out more visit our" + pageLink;
+  //message if it is finished projects
+  
+  
+
+  return message;
 }
 function handleIntroduction() {
   return "introduction"
