@@ -5,7 +5,7 @@ export function responseFromWit(intentData, entitiesData, traitsData) {
     const intentname = intentData[0].name;
     const intentconfidence = intentData[0].confidence;
 
-    console.log(traitsData[0])
+    console.log("TraitsData", traitsData)
 
     switch (intentname) {
     case "greetings":
@@ -47,8 +47,8 @@ export function responseFromWit(intentData, entitiesData, traitsData) {
     }
   }
 
-  else if(traitsData[0]){
-    if(traitsData[0]['wit$bye']){
+  else if(traitsData){
+    if(traitsData['wit$bye']){
       const traitsName = "bye"
     }
     else{
