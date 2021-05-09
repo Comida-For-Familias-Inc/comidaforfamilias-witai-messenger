@@ -12,43 +12,45 @@ export function responseFromWit(intentData, entitiesData, traitsData) {
     const intentname = intentData[0].name;
     const intentconfidence = intentData[0].confidence;
 
+    if(intentconfidence > 0.8){
     switch (intentname) {
-    case "greetings":
-      return handleGreeting();
-      break;
-    case "bye":
-      return "Thank you for your interest in Comida For Familias. Have a great day!"; //make to function
-      break;
-    case "donate":
-      return handleDonate();
-      break;
-    case "get_job_list":
-      return handleGetJobList();
-      break;
-    case "get_location":
-      return handleGetLocation();
-      break;
-    case "get_news":
-      return handleGetNews();
-      break;
-    case "get_projects":
-      return handleGetProjects();
-      break;
-    case "introduction":
-      return handleIntroduction();
-      break;
-    case "join_volunteer":
-      return handleJoinVolunteer();
-      break;
-    case "no_prob":
-      return "You are very welcome."; //make to function
-      break;
-    case "opt_cpt":
-      return handleOptCpt();
-      break;
-    case "organization_purpose":
-      return handleOrganizationPurpose();
-      break;
+      case "greetings":
+        return handleGreeting();
+        break;
+      case "bye":
+        return "Thank you for your interest in Comida For Familias. Have a great day!"; //make to function
+        break;
+      case "donate":
+        return handleDonate();
+        break;
+      case "get_job_list":
+        return handleGetJobList();
+        break;
+      case "get_location":
+        return handleGetLocation();
+        break;
+      case "get_news":
+        return handleGetNews();
+        break;
+      case "get_projects":
+        return handleGetProjects();
+        break;
+      case "introduction":
+        return handleIntroduction();
+        break;
+      case "join_volunteer":
+        return handleJoinVolunteer();
+        break;
+      case "no_prob":
+        return "You are very welcome."; //make to function
+        break;
+      case "opt_cpt":
+        return handleOptCpt();
+        break;
+      case "organization_purpose":
+        return handleOrganizationPurpose();
+        break;
+      }
     }
   }
 
@@ -134,15 +136,18 @@ function handleGreeting(){
   
   let greeting = ""
 
+  console.log("TIME: ", time)
   if (time < 11){
-    return greeting = "good morning"
+     greeting = "good morning"
   } else if (time < 18){
-    return greeting = "good afternoon"
+    greeting = "good afternoon"
   } else if (time < 20){
-    return greeting = "good evening"
-  } else{
-    return greeting = "good night"
+    greeting = "good evening"
+  } else {
+    greeting = "good night"
   }
+
+  return greeting;
 
 }
 
