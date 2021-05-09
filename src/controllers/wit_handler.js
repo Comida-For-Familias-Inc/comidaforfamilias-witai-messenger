@@ -9,7 +9,7 @@ export function responseFromWit(data, wit_message) {
 
   let result = 'default';
   switch (intentname) {
-    case "greeting":
+    case "greetings":
       return handleGreeting();
       break;
     case "bye":
