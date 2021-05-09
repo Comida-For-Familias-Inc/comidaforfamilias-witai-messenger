@@ -190,10 +190,11 @@ function handleMessage(sender_psid, message) {
   console.log("TONY TEST");
   const greeting = firstTrait(message.nlp, 'wit$afternoon_greeting');
   console.log(greeting)
-
+  console.log(message.nlp.intents.length);
   console.log("END OF TONY TEST");
 
   console.log("data from wit:");
+  
   console.log(JSON.stringify(message));
   const intent = message.intents.length > 0 && message.intents[0] || "__foo__";
 
