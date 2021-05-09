@@ -9,6 +9,10 @@ import createBuffer from 'audio-buffer-from';
 const FB_VERIFY_TOKEN = process.env.FB_VERIFY_TOKEN;
 const WIT_TOKEN = process.env.WIT_TOKEN;
 
+let Wit = null;
+let log = null;
+
+
 //wit_handler
 const wit_handler = require("./wit_handler");
 
