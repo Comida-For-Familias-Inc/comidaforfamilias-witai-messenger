@@ -15,7 +15,8 @@ export function responseFromWit(intentData, entitiesData, traitsData) {
   console.log("BOOLEAN RESULT: ", traitsData['wit$bye'] && traitsData['wit$greetings']);
 
 
-  if (intentData[0] === undefined && traitsData == {}) {
+  //if (intentData[0] === undefined && traitsData == {}) {
+  if (testingintent == '__foo__'){
     return handleGibberish();
   }
 
