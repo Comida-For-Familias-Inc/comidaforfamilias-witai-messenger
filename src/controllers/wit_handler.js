@@ -1,85 +1,103 @@
 //main function for all messages
 export function responseFromWit(data) {
-    console.log("data from wit:");
-    console.log(JSON.stringify(data));
-  
-    const intent = data.intents.length > 0 && data.intents[0] || "__foo__";
-    
-    switch (intent.name) {
-      case "afternoon_greeting":
-        return "Good afternoon!";
-      case "bye":
-        return "Thank you for your interest in Comida For Familias. Have a great day!";
-      case "donate":
-        return handleDonate(data);
-      case "evening_greeting":
-        return "Good evening!";
-      case "get_job_list":
-        return handleGetJobList(data);
-      case "get_location":
-        return handleGetLocation(data);
-      case "get_news":
-        return handleGetNews(data);
-      case "get_projects":
-        return handleGetProjects(data);
-      case "greetings":
-        return "Hello! Welcome to the Facebook page of Comida For Familias.";
-      case "introduction":
-        return handleIntroduction(data);
-      case "join_volunteer":
-        return handleJoinVolunteer(data);
-      case "morning_greeting":
-        return "Good morning!";
-      case "no_prob":
-        return "You are very welcome.";
-      case "opt_cpt":
-        return handleOptCpt(data);
-      case "organization_purpose":
-        return handleOrganizationPurpose(data);
-    }
-    
-    return handleGibberish();
+  const intentname = data[0].name;
+
+  console.log("data from wit:");
+  console.log(JSON.stringify(data));
+
+  let result = 'default';
+  switch (intentname) {
+    case "afternoon_greeting":
+      result = "Good afternoon!";
+      break;
+    case "bye":
+      result = "Thank you for your interest in Comida For Familias. Have a great day!";
+      break;
+    case "donate":
+      result = handleDonate(wit.message);
+      break;
+    case "evening_greeting":
+      result = "Good evening!";
+      break;
+    case "get_job_list":
+      result = handleGetJobList(wit.message);
+      break;
+    case "get_location":
+      result = handleGetLocation(wit.message);
+      break;
+    case "get_news":
+      result = handleGetNews(wit.message);
+      break;
+    case "get_projects":
+      result = handleGetProjects(wit.message);
+      break;
+    case "greetings":
+      result = "Hello! Welcome to the Facebook page of Comida For Familias.";
+      break;
+    case "introduction":
+      result = handleIntroduction(wit.message);
+      break;
+    case "join_volunteer":
+      result = handleJoinVolunteer(wit.message);
+      break;
+    case "morning_greeting":
+      result = "Good morning!";
+      break;
+    case "no_prob":
+      result = "You are very welcome.";
+      break;
+    case "opt_cpt":
+      result = handleOptCpt(wit.message);
+      break;
+    case "organization_purpose":
+      result = handleOrganizationPurpose(wit.message);
+      break;
   }
-  
-  
-  //function for handling meaningless messages
+
+  //callSendAPI(sender, `We've received your message: ${text}.`);
+  callSendAPI(sender, result);
+  return handleGibberish();
+}
+
+
+//function for handling meaningless messages
 export function handleGibberish() {
-    return Promise.resolve(
-      "ask me something like 'How do I join as a volunteer?' or 'What is Comida For Familias for?'"
-    );
-  }
-
-
-
-function handleDonate(data){
-  return "Test"
+  return Promise.resolve(
+    "ask me something like 'How do I join as a volunteer?' or 'What is Comida For Familias for?'"
+  );
 }
 
-function handleGetJobList(data){
-  return "Test"
+
+//testing functions
+function handleDonate(data) {
+  return "donate"
 }
 
-function handleGetLocation(data){
-  return "Test"
+function handleGetJobList(data) {
+  return "get job list"
 }
 
-function handleGetNews(data){
-  return "Test"
+function handleGetLocation(data) {
+  return "get location"
 }
-function handleGetProjects(data){
-  return "Test"
+
+function handleGetNews(data) {
+  return "get news"
 }
-function handleIntroduction(data){
-  return "Test"
+function handleGetProjects(data) {
+  return "get projects"
 }
-function handleJoinVolunteer(data){
-  return "Test"
+function handleIntroduction(data) {
+  return "introduction"
 }
-function handleOptCpt(data){
-  return "Test"
+function handleJoinVolunteer(data) {
+  return "join as volunteer"
 }
-function handleOrganizationPurpose(data){
-  return "Test"
+function handleOptCpt(data) {
+  return "opt"
+}
+function handleOrganizationPurpose(data) {
+  return "purpose"
 }
 
 //exports.responseFromWit = responseFromWit;
