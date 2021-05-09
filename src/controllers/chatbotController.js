@@ -186,42 +186,43 @@ function firstTrait(nlp, name) {
 
 function handleMessage(sender_psid, message) {
   // check greeting is here and is confident
+  
    const intent = message.intents.length > 0 && message.intents[0] || "__foo__";
 
   switch (intent.name) {
       case "afternoon_greeting":
-        return "Good afternoon!";
+        result = "Good afternoon!";
       case "bye":
-        return "Thank you for your interest in Comida For Familias. Have a great day!";
+        result = "Thank you for your interest in Comida For Familias. Have a great day!";
       case "donate":
-        return handleDonate(message);
+        result = handleDonate(message);
       case "evening_greeting":
-        return "Good evening!";
+        result = "Good evening!";
       case "get_job_list":
-        return handleGetJobList(message);
+        result = handleGetJobList(message);
       case "get_location":
-        return handleGetLocation(message);
+        result = handleGetLocation(message);
       case "get_news":
-        return handleGetNews(message);
+        result = handleGetNews(message);
       case "get_projects":
-        return handleGetProjects(message);
+        result = handleGetProjects(message);
       case "greetings":
-        return "Hello! Welcome to the Facebook page of Comida For Familias.";
+        result = "Hello! Welcome to the Facebook page of Comida For Familias.";
       case "introduction":
-        return handleIntroduction(message);
+        result = handleIntroduction(message);
       case "join_volunteer":
-        return handleJoinVolunteer(message);
+        result = handleJoinVolunteer(message);
       case "morning_greeting":
-        return "Good morning!";
+        result = "Good morning!";
       case "no_prob":
-        return "You are very welcome.";
+        result = "You are very welcome.";
       case "opt_cpt":
-        return handleOptCpt(message);
+        result = handleOptCpt(message);
       case "organization_purpose":
-        return handleOrganizationPurpose(message);
+        result = handleOrganizationPurpose(message);
     }
     
-    return handleGibberish();
+    //return handleGibberish();
   /*const greeting = firstTrait(message.nlp, 'wit$greetings');
   if (greeting && greeting.confidence > 0.8) {
     callSendAPI(sender_psid,'Hi there!');
@@ -229,6 +230,7 @@ function handleMessage(sender_psid, message) {
     // default logic
     callSendAPI(sender_psid,'default');
   }*/
+  callSendAPI(sender_psid, result)
 }
 
 
