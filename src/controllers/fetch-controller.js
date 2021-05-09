@@ -1,4 +1,4 @@
-var fetchModel= require('../models/fetch-model');
+/*var fetchModel= require('../models/fetch-model');
 module.exports={
  
     fetchData:function(req, res){

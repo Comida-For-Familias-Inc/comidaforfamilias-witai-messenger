@@ -5,8 +5,8 @@ import viewEngine from "./config/viewEngine";
 import initWebRoutes from "./routes/web";
 
 //dependencies (connecting to mongodb)
-var mongoose = require('mongoose');
-var conn = mongoose.connection;
+//var mongoose = require('mongoose');
+//var conn = mongoose.connection;
 
 
 let app = express();
@@ -27,7 +27,7 @@ app.listen(port, ()=>{
     console.log("App is running at the port: "+ port)
 })
 
-
+/*
 mongoose.connect('mongodb://localhost:27017/nodeapp', {useNewUrlParser: true});
 conn.on('connected', function() {
     console.log('database is connected successfully');
