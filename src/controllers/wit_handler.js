@@ -14,7 +14,8 @@ export function responseFromWit(intentData, entitiesData, traitsData) {
   //let boolean = traitsData.length > 0;
   console.log("BOOLEAN RESULT: ", traitsData['wit$bye'] && traitsData['wit$greetings']);
 
-  if (intentData[0] && traitsData = {}) {
+
+  if (intentData[0] && traitsData == {}) {
     return handleGibberish();
   }
 
@@ -156,7 +157,7 @@ export function handleGibberish() {
   return "Ask me something like 'How do I join as a volunteer?' or 'What is Comida For Familias for?'";
 }
 
-function handleGreeting(){
+function handleGreeting() {
   //let date = new Date();
   //var offset = new Date().getTimezoneOffset();
   //let time = date.getHours();
