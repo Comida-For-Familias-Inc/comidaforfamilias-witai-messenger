@@ -9,50 +9,41 @@ export function responseFromWit(data, wit_message) {
 
   let result = 'default';
   switch (intentname) {
-    case "afternoon_greeting":
-      return result = "Good afternoon!";
+    case "greeting":
+      return handleGreeting();
       break;
     case "bye":
-      return result = "Thank you for your interest in Comida For Familias. Have a great day!";
+      return "Thank you for your interest in Comida For Familias. Have a great day!";
       break;
     case "donate":
-      result = handleDonate();
-      break;
-    case "evening_greeting":
-      return result = "Good evening!";
+      return handleDonate();
       break;
     case "get_job_list":
-      result = handleGetJobList();
+      return handleGetJobList();
       break;
     case "get_location":
-      result = handleGetLocation();
+      return handleGetLocation();
       break;
     case "get_news":
-      result = handleGetNews();
+      return handleGetNews();
       break;
     case "get_projects":
-      result = handleGetProjects();
-      break;
-    case "greetings":
-      return result = "Hello! Welcome to the Facebook page of Comida For Familias.";
+      return handleGetProjects();
       break;
     case "introduction":
-      result = handleIntroduction();
+      return handleIntroduction();
       break;
     case "join_volunteer":
-      result = handleJoinVolunteer();
-      break;
-    case "morning_greeting":
-      return result = "Good morning!";
+      return handleJoinVolunteer();
       break;
     case "no_prob":
-      return result = "You are very welcome.";
+      return "You are very welcome.";
       break;
     case "opt_cpt":
-      result = handleOptCpt();
+      return handleOptCpt();
       break;
     case "organization_purpose":
-      result = handleOrganizationPurpose();
+      return handleOrganizationPurpose();
       break;
   }
 
@@ -65,6 +56,14 @@ export function handleGibberish() {
   return Promise.resolve(
     "ask me something like 'How do I join as a volunteer?' or 'What is Comida For Familias for?'"
   );
+}
+
+function handleGreeting(){
+  let d = new Date();
+  let n = d.toLocaleTimeString();
+  console.log(n);
+  let greeting = "hello its" + n; 
+  return greeting;
 }
 
 
