@@ -196,7 +196,9 @@ function handleMessage(sender_psid, message) {
   console.log("data from wit:");
   
   console.log(JSON.stringify(message));
-  const intent = message.intents.length > 0 && message.intents[0] || "__foo__";
+  const intent = message.nlp.intents.length > 0 && message.nlp.intents[0] || "__foo__";
+
+  console.log(intent.name);
 
   switch (intent.name) {
       case "afternoon_greeting":
