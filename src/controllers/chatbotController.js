@@ -91,7 +91,7 @@ let postWebhook = (req, res) => {
               // For now, let's reply with another automatic message
 
               //const intent = Promise.resolve(wit.message(intents));
-              console.log("INTENT.NAME: ", intents.name);
+              
               console.log("INTENT[0].NAME: ", intents[0].name);
               
               const wit_result = wit_handler.responseFromWit(intents, wit.message);
