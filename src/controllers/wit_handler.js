@@ -149,8 +149,8 @@ export function handleGibberish() {
 
 function handleGreeting(){
   let date = new Date();
-  var offset = new Date().getTimezoneOffset();
-  let time = offset.getHours();
+  //var offset = new Date().getTimezoneOffset();
+  let time = date.getHours();
   //const greetingtest = entities['wit$greetings:greetings'];
   //console.log(greetingstest);
   
