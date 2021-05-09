@@ -94,7 +94,7 @@ let postWebhook = (req, res) => {
               console.log("INTENT.NAME: ", intents.name);
               console.log("INTENT[0].NAME: ", intents[0].name);
               
-              const wit_result = wit_handler.responseFromWit(intents);
+              const wit_result = wit_handler.responseFromWit(intents, wit.message);
 
               //callSendAPI(sender, `We've received your message: ${text}.`);
               callSendAPI(sender, wit_result);

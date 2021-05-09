@@ -1,5 +1,5 @@
 //main function for all messages
-export function responseFromWit(data) {
+export function responseFromWit(data, wit_message) {
   const intentname = data[0].name;
 
   console.log("data from wit:");
@@ -14,31 +14,31 @@ export function responseFromWit(data) {
       return result = "Thank you for your interest in Comida For Familias. Have a great day!";
       break;
     case "donate":
-      result = handleDonate(wit.message);
+      result = handleDonate(wit_message);
       break;
     case "evening_greeting":
       return result = "Good evening!";
       break;
     case "get_job_list":
-      result = handleGetJobList(wit.message);
+      result = handleGetJobList(wit_message);
       break;
     case "get_location":
-      result = handleGetLocation(wit.message);
+      result = handleGetLocation(wit_message);
       break;
     case "get_news":
-      result = handleGetNews(wit.message);
+      result = handleGetNews(wit_message);
       break;
     case "get_projects":
-      result = handleGetProjects(wit.message);
+      result = handleGetProjects(wit_message);
       break;
     case "greetings":
       return result = "Hello! Welcome to the Facebook page of Comida For Familias.";
       break;
     case "introduction":
-      result = handleIntroduction(wit.message);
+      result = handleIntroduction(wit_message);
       break;
     case "join_volunteer":
-      result = handleJoinVolunteer(wit.message);
+      result = handleJoinVolunteer(wit_message);
       break;
     case "morning_greeting":
       return result = "Good morning!";
@@ -47,10 +47,10 @@ export function responseFromWit(data) {
       return result = "You are very welcome.";
       break;
     case "opt_cpt":
-      result = handleOptCpt(wit.message);
+      result = handleOptCpt(wit_message);
       break;
     case "organization_purpose":
-      result = handleOrganizationPurpose(wit.message);
+      result = handleOrganizationPurpose(wit_message);
       break;
   }
 
