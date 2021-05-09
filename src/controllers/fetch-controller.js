@@ -7,4 +7,4 @@ module.exports={
           res.render('user-table',{userData:data});
       })
     }
-}
+}*/

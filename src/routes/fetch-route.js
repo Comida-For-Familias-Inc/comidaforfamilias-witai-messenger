@@ -4,4 +4,4 @@ var userController= require('../controllers/fetch-controller');
 
 router.post('/fetch-data',fetchController.fetchData);
 
-module.exports = router;
+module.exports = router;*/
