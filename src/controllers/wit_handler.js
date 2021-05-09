@@ -5,6 +5,8 @@ export function responseFromWit(intentData, entitiesData, traitsData) {
     const intentname = intentData[0].name;
     const intentconfidence = intentData[0].confidence;
 
+    console.log(traitsData[0])
+
     switch (intentname) {
     case "greetings":
       return handleGreeting();
@@ -122,7 +124,7 @@ export function responseFromWit(intentData, entitiesData, traitsData) {
 
 //function for handling meaningless messages
 export function handleGibberish() {
-  return "ask me something like 'How do I join as a volunteer?' or 'What is Comida For Familias for?'";
+  return "Ask me something like 'How do I join as a volunteer?' or 'What is Comida For Familias for?'";
 }
 
 function handleGreeting(){
