@@ -94,8 +94,6 @@ let postWebhook = (req, res) => {
 
               //const intent = Promise.resolve(wit.message(intents));
               
-              console.log("INTENT[0].NAME: ", intents[0].name);
-              
               //sends the message to wit_handler in the form of intents, entities, and traits
               //could be changed to send data instead, but why would you do that?
               const wit_result = wit_handler.responseFromWit(intents, entities, traits);
