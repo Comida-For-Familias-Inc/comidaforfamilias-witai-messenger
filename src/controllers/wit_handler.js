@@ -42,6 +42,7 @@ export function responseFromWit(intentData, entitiesData, traitsData) {
     case "organization_purpose":
       return handleOrganizationPurpose();
       break;
+    }
   }
 
   else if(traitsData[0]){
