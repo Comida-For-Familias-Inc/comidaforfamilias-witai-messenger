@@ -14,31 +14,31 @@ export function responseFromWit(data) {
       return result = "Thank you for your interest in Comida For Familias. Have a great day!";
       break;
     case "donate":
-      return result = handleDonate(wit.message);
+      result = handleDonate(wit.message);
       break;
     case "evening_greeting":
       return result = "Good evening!";
       break;
     case "get_job_list":
-      return result = handleGetJobList(wit.message);
+      result = handleGetJobList(wit.message);
       break;
     case "get_location":
-      return result = handleGetLocation(wit.message);
+      result = handleGetLocation(wit.message);
       break;
     case "get_news":
-      return result = handleGetNews(wit.message);
+      result = handleGetNews(wit.message);
       break;
     case "get_projects":
-      return result = handleGetProjects(wit.message);
+      result = handleGetProjects(wit.message);
       break;
     case "greetings":
       return result = "Hello! Welcome to the Facebook page of Comida For Familias.";
       break;
     case "introduction":
-      return result = handleIntroduction(wit.message);
+      result = handleIntroduction(wit.message);
       break;
     case "join_volunteer":
-      return result = handleJoinVolunteer(wit.message);
+      result = handleJoinVolunteer(wit.message);
       break;
     case "morning_greeting":
       return result = "Good morning!";
@@ -47,10 +47,10 @@ export function responseFromWit(data) {
       return result = "You are very welcome.";
       break;
     case "opt_cpt":
-      return result = handleOptCpt(wit.message);
+      result = handleOptCpt(wit.message);
       break;
     case "organization_purpose":
-      return result = handleOrganizationPurpose(wit.message);
+      result = handleOrganizationPurpose(wit.message);
       break;
   }
 
