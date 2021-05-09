@@ -89,53 +89,38 @@ let postWebhook = (req, res) => {
               // For now, let's reply with another automatic message
 
               const intent = wit.message(intents);
-              let result = 'default';
+              var result = 'default';
               switch (intent.name) {
                 case "afternoon_greeting":
                   result = "Good afternoon!";
-                  break;
                 case "bye":
                   result = "Thank you for your interest in Comida For Familias. Have a great day!";
-                  break;
                 case "donate":
                   result = handleDonate(message);
-                  break;
                 case "evening_greeting":
                   result = "Good evening!";
-                  break;
                 case "get_job_list":
                   result = handleGetJobList(message);
-                  break;
                 case "get_location":
                   result = handleGetLocation(message);
-                  break;
                 case "get_news":
                   result = handleGetNews(message);
-                  break;
                 case "get_projects":
                   result = handleGetProjects(message);
-                  break;
                 case "greetings":
                   result = "Hello! Welcome to the Facebook page of Comida For Familias.";
-                  break;
                 case "introduction":
                   result = handleIntroduction(message);
-                  break;
                 case "join_volunteer":
                   result = handleJoinVolunteer(message);
-                  break;
                 case "morning_greeting":
                   result = "Good morning!";
-                  break;
                 case "no_prob":
                   result = "You are very welcome.";
-                  break;
                 case "opt_cpt":
                   result = handleOptCpt(message);
-                  break;
                 case "organization_purpose":
                   result = handleOrganizationPurpose(message);
-                  break;
             }
 
               //callSendAPI(sender, `We've received your message: ${text}.`);
