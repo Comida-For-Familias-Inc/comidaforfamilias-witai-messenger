@@ -59,6 +59,7 @@ export function responseFromWit(intentData, entitiesData, traitsData) {
     case "bye":
       return "Thank you for your interest in Comida For Familias. Have a great day!"; //make to function
       break;
+    }
   }
   else {
     return handleGibberish();
