@@ -12,6 +12,12 @@ const WIT_TOKEN = process.env.WIT_TOKEN;
 //wit_handler
 const wit_handler = require("./wit_handler");
 
+// Setting up our bot
+const wit = new Wit({
+  accessToken: WIT_TOKEN,
+  logger: new log.Logger(log.INFO)
+});
+
 let test = (req, res) => {
   return res.send("HELLO World");
 }
@@ -46,33 +52,48 @@ let postWebhook = (req, res) => {
   //extracts from event
   let body = req.body;
 
-  // Checks this is an event from a page subscription
   if (body.object === 'page') {
+    body.entry.forEach(entry => {
+      entry.messaging.forEach(event => {
+        if (event.message && !event.message.is_echo) {
+          // Yay! We got a new message!
+          // We retrieve the Facebook user ID of the sender
+          const sender = event.sender.id;
 
-    body.entry.forEach(function (entry) {
+          // We could retrieve the user's current session, or create one if it doesn't exist
+          // This is useful if we want our bot to figure out the conversation history
+          // const sessionId = findOrCreateSession(sender);
 
-      // Gets the body of the webhook event
-      let webhook_event = entry.messaging[0];
+          // We retrieve the message content
+          const {text, attachments} = event.message;
 
-      // Get the sender PSID
-      let sender_psid = webhook_event.sender.id;
-      console.log('Sender PSID: ' + sender_psid);
-
-      // Check if the event is a message or postback and
-      // pass the event to the appropriate handler function
-      if (webhook_event.message) {
-        handleMessage(sender_psid, webhook_event.message);
-      } else if (webhook_event.postback) {
-        handlePostback(sender_psid, webhook_event.postback);
-      }
-
+          if (attachments) {
+            // We received an attachment
+            // Let's reply with an automatic message
+            fbMessage(sender, 'Sorry I can only process text messages for now.')
+            .catch(console.error);
+          } else if (text) {
+            // We received a text message
+            // Let's run /message on the text to extract some entities, intents and traits
+            wit.message(text).then(({entities, intents, traits}) => {
+              // You can customize your response using these
+              console.log(intents);
+              console.log(entities);
+              console.log(traits);
+              // For now, let's reply with another automatic message
+              fbMessage(sender, `We've received your message: ${text}.`);
+            })
+            .catch((err) => {
+              console.error('Oops! Got an error from Wit: ', err.stack || err);
+            })
+          }
+        } else {
+          console.log('received event', JSON.stringify(event));
+        }
+      });
     });
-
-    res.status(200).send('EVENT_RECEIVED');
-  } else {
-    // Returns a '404 Not Found' if event is not from a page subscription
-    res.sendStatus(404);
   }
+  res.sendStatus(200);
 }
 
 
