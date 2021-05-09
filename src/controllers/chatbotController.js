@@ -73,19 +73,16 @@ let postWebhook = (req, res) => {
           // We retrieve the message content
           const {text, attachments} = event.message;
 
-          //if attachment
           if (attachments) {
             // We received an attachment
             // Let's reply with an automatic message
             callSendAPI(sender, 'Sorry I can only process text messages for now.')
-            
-          //if text
+            .catch(console.error);
           } else if (text) {
             // We received a text message
             // Let's run /message on the text to extract some entities, intents and traits
             wit.message(text).then(({entities, intents, traits}) => {
-              console.log("TEXT", text);
-              console.log("WIT.MESSAGE(text)", wit.message(text).resolve);
+              console.log("WIT.MESSAGE(text)", wit.message(text));
               
               // You can customize your response using these
               console.log("INTENTS", intents);
@@ -94,13 +91,60 @@ let postWebhook = (req, res) => {
               // For now, let's reply with another automatic message
 
               //const intent = Promise.resolve(wit.message(intents));
-              
+              console.log("INTENT.NAME: ", intents.name);
               console.log("INTENT[0].NAME: ", intents[0].name);
               
-              const wit_result = wit_handler.responseFromWit(intents, wit.message);
+              let result = 'default';
+              switch (intents[0].name) {
+                case "afternoon_greeting":
+                  result = "Good afternoon!";
+                  break;
+                case "bye":
+                  result = "Thank you for your interest in Comida For Familias. Have a great day!";
+                  break;
+                case "donate":
+                  result = handleDonate(wit.message);
+                  break;
+                case "evening_greeting":
+                  result = "Good evening!";
+                  break;
+                case "get_job_list":
+                  result = handleGetJobList(wit.message);
+                  break;
+                case "get_location":
+                  result = handleGetLocation(wit.message);
+                  break;
+                case "get_news":
+                  result = handleGetNews(wit.message);
+                  break;
+                case "get_projects":
+                  result = handleGetProjects(wit.message);
+                  break;
+                case "greetings":
+                  result = "Hello! Welcome to the Facebook page of Comida For Familias.";
+                  break;
+                case "introduction":
+                  result = handleIntroduction(wit.message);
+                  break;
+                case "join_volunteer":
+                  result = handleJoinVolunteer(wit.message);
+                  break;
+                case "morning_greeting":
+                  result = "Good morning!";
+                  break;
+                case "no_prob":
+                  result = "You are very welcome.";
+                  break;
+                case "opt_cpt":
+                  result = handleOptCpt(wit.message);
+                  break;
+                case "organization_purpose":
+                  result = handleOrganizationPurpose(wit.message);
+                  break;
+            }
 
               //callSendAPI(sender, `We've received your message: ${text}.`);
-              callSendAPI(sender, wit_result);
+              callSendAPI(sender, result);
             })
             .catch((err) => {
               console.error('Oops! Got an error from Wit: ', err.stack || err);
@@ -310,16 +354,37 @@ function handleGibberish() {
     );
   }
 
-
-
-
-
-function handleVoiceMessage(sender_psid, received_message){
-  return Promise.resolve("Handling voice message is not enabled yet")
+//testing functions
+function handleDonate(data){
+  return "donate"
 }
 
+function handleGetJobList(data){
+  return "get job list"
+}
 
+function handleGetLocation(data){
+  return "get location"
+}
 
+function handleGetNews(data){
+  return "get news"
+}
+function handleGetProjects(data){
+  return "get projects"
+}
+function handleIntroduction(data){
+  return "introduction"
+}
+function handleJoinVolunteer(data){
+  return "join as volunteer"
+}
+function handleOptCpt(data){
+  return "opt"
+}
+function handleOrganizationPurpose(data){
+  return "purpose"
+}
 
 /*
 function handleMessage(sender_psid, received_message) {
