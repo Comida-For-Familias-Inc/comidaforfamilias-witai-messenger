@@ -282,7 +282,6 @@ function handleMessage(sender_psid, message) {
   let response;
 
   const url = "https://api.wit.ai/speech";
-  break;
   const witToken = process.env.WIT_TOKEN; 
 
 
