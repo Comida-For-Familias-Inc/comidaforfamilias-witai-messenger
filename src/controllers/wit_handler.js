@@ -16,31 +16,31 @@ export function responseFromWit(data, wit_message) {
       return result = "Thank you for your interest in Comida For Familias. Have a great day!";
       break;
     case "donate":
-      result = handleDonate(wit_message);
+      result = handleDonate();
       break;
     case "evening_greeting":
       return result = "Good evening!";
       break;
     case "get_job_list":
-      result = handleGetJobList(wit_message);
+      result = handleGetJobList();
       break;
     case "get_location":
-      result = handleGetLocation(wit_message);
+      result = handleGetLocation();
       break;
     case "get_news":
-      result = handleGetNews(wit_message);
+      result = handleGetNews();
       break;
     case "get_projects":
-      result = handleGetProjects(wit_message);
+      result = handleGetProjects();
       break;
     case "greetings":
       return result = "Hello! Welcome to the Facebook page of Comida For Familias.";
       break;
     case "introduction":
-      result = handleIntroduction(wit_message);
+      result = handleIntroduction();
       break;
     case "join_volunteer":
-      result = handleJoinVolunteer(wit_message);
+      result = handleJoinVolunteer();
       break;
     case "morning_greeting":
       return result = "Good morning!";
@@ -49,10 +49,10 @@ export function responseFromWit(data, wit_message) {
       return result = "You are very welcome.";
       break;
     case "opt_cpt":
-      result = handleOptCpt(wit_message);
+      result = handleOptCpt();
       break;
     case "organization_purpose":
-      result = handleOrganizationPurpose(wit_message);
+      result = handleOrganizationPurpose();
       break;
   }
 
@@ -69,34 +69,34 @@ export function handleGibberish() {
 
 
 //testing functions
-function handleDonate(data) {
+function handleDonate() {
   return "donate"
 }
 
-function handleGetJobList(data) {
+function handleGetJobList() {
   return "get job list"
 }
 
-function handleGetLocation(data) {
+function handleGetLocation() {
   return "get location"
 }
 
-function handleGetNews(data) {
+function handleGetNews() {
   return "get news"
 }
-function handleGetProjects(data) {
+function handleGetProjects() {
   return "get projects"
 }
-function handleIntroduction(data) {
+function handleIntroduction() {
   return "introduction"
 }
-function handleJoinVolunteer(data) {
+function handleJoinVolunteer() {
   return "join as volunteer"
 }
-function handleOptCpt(data) {
+function handleOptCpt() {
   return "opt"
 }
-function handleOrganizationPurpose(data) {
+function handleOrganizationPurpose() {
   return "purpose"
 }
 
