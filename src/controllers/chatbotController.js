@@ -76,7 +76,7 @@ let postWebhook = (req, res) => {
           if (attachments) {
             // We received an attachment
             // Let's reply with an automatic message
-            fbMessage(sender, 'Sorry I can only process text messages for now.')
+            callSendAPI(sender, 'Sorry I can only process text messages for now.')
             .catch(console.error);
           } else if (text) {
             // We received a text message
@@ -87,7 +87,7 @@ let postWebhook = (req, res) => {
               console.log(entities);
               console.log(traits);
               // For now, let's reply with another automatic message
-              fbMessage(sender, `We've received your message: ${text}.`);
+              callSendAPI(sender, `We've received your message: ${text}.`);
             })
             .catch((err) => {
               console.error('Oops! Got an error from Wit: ', err.stack || err);
@@ -203,6 +203,17 @@ function callSendAPI(sender_psid, response) {
     }
   });
 }
+
+
+
+
+
+
+
+
+
+
+
 
 //Handling Natural language processing
 function firstTrait(nlp, name) {
