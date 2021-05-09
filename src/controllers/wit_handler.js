@@ -1,11 +1,16 @@
 //main function for all messages
 export function responseFromWit(intentData, entitiesData, traitsData) {
+  //testing
+  const testingintent = intentData.length > 0 && intentsData[0] || "__foo__";
+  
+  console.log("TESTING: INTENT", testingintent);
+  console.log("intentData[0]: ", intentData[0])
+  console.log("TraitsData: ", traitsData)
+
   if (intentData[0]){
     const intent = intentData[0];
     const intentname = intentData[0].name;
     const intentconfidence = intentData[0].confidence;
-
-    console.log("TraitsData", traitsData)
 
     switch (intentname) {
     case "greetings":
@@ -69,13 +74,6 @@ export function responseFromWit(intentData, entitiesData, traitsData) {
     return handleGibberish();
   }
 
-  //testing
-  const testingintent = intentData.length > 0 && intentsData[0] || "__foo__";
-  const greetingtest = entities['wit$greetings:greetings'];
-
-  console.log(testingintent);
-  console.log(greetingstest)
-
 
   console.log("data from wit (wit_handler.js):");
 
@@ -131,7 +129,9 @@ export function handleGibberish() {
 function handleGreeting(){
   let date = new Date();
   let time = date.getHours();
-
+  const greetingtest = entities['wit$greetings:greetings'];
+  console.log(greetingstest);
+  
   let greeting = ""
 
   if (time < 11){
