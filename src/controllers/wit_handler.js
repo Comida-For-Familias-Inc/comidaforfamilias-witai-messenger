@@ -14,8 +14,6 @@ export function responseFromWit(intentData, entitiesData, traitsData) {
   //let boolean = traitsData.length > 0;
   console.log("BOOLEAN RESULT: ", traitsData['wit$bye'] && traitsData['wit$greetings']);
 
-
-  //if (intentData[0] === undefined && traitsData == {}) {
   if (testingintent == '__foo__'){
     return handleGibberish();
   }
@@ -188,7 +186,7 @@ function handleGreeting() {
 //testing functions
 function handleDonate() {
   let paypal = "Paypal";
-  let paypalLink = str.link("https://www.paypal.com/us/fundraiser/charity/3792494");
+  let paypalLink = string.link("https://www.paypal.com/us/fundraiser/charity/3792494");
   
   let message = "How would you like to donate?\n" + paypalLink;
 
@@ -207,7 +205,7 @@ function handleGetJobList() {
   });
 */
   let page = "website";
-  let pageLink = str.link("https://comidaforfamilias.org/getinvolved/positions");
+  let pageLink = string.link("https://comidaforfamilias.org/getinvolved/positions");
   
   let message = "Positions available include recruiter, marketer, developer, designer, data scientist and so much more. Find out more about these position on" + page;
 
