@@ -83,11 +83,47 @@ let postWebhook = (req, res) => {
             // Let's run /message on the text to extract some entities, intents and traits
             wit.message(text).then(({entities, intents, traits}) => {
               // You can customize your response using these
-              console.log(intents);
-              console.log(entities);
-              console.log(traits);
+              console.log("INTENTS", intents);
+              console.log("ENTITIES", entities);
+              console.log("TRAITS", traits);
               // For now, let's reply with another automatic message
-              callSendAPI(sender, `We've received your message: ${text}.`);
+
+              const intent = wit.message.intents
+              switch (intent.name) {
+              case "afternoon_greeting":
+                result = "Good afternoon!";
+              case "bye":
+                result = "Thank you for your interest in Comida For Familias. Have a great day!";
+              case "donate":
+                result = handleDonate(message);
+              case "evening_greeting":
+                result = "Good evening!";
+              case "get_job_list":
+                result = handleGetJobList(message);
+              case "get_location":
+                result = handleGetLocation(message);
+              case "get_news":
+                result = handleGetNews(message);
+              case "get_projects":
+                result = handleGetProjects(message);
+              case "greetings":
+                result = "Hello! Welcome to the Facebook page of Comida For Familias.";
+              case "introduction":
+                result = handleIntroduction(message);
+              case "join_volunteer":
+                result = handleJoinVolunteer(message);
+              case "morning_greeting":
+                result = "Good morning!";
+              case "no_prob":
+                result = "You are very welcome.";
+              case "opt_cpt":
+                result = handleOptCpt(message);
+              case "organization_purpose":
+                result = handleOrganizationPurpose(message);
+            }
+
+              //callSendAPI(sender, `We've received your message: ${text}.`);
+              callSendAPI(sender, result);
             })
             .catch((err) => {
               console.error('Oops! Got an error from Wit: ', err.stack || err);
