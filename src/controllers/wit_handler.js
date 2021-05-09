@@ -1,17 +1,22 @@
 //main function for all messages
 export function responseFromWit(intentData, entities, traits) {
-  const intent = intentData[0];
-  const intentname = intentData[0].name;
-  const intentconfidence = intentData[0].confidence;
+  if(intentData[0]){
+    const intent = intentData[0];
+    const intentname = intentData[0].name;
+    const intentconfidence = intentData[0].confidence;
+  }
+  else{
+    return handleGibberish();
+  }
 
   console.log("data from wit (wit_handler.js):");
 
   let result = 'default';
-  switch (intentname) {
-    case "greetings":
+  switch (entities[0]) {
+    case "wit$greetings":
       return handleGreeting();
       break;
-    case "bye":
+    case "wit$bye":
       return "Thank you for your interest in Comida For Familias. Have a great day!"; //make to function
       break;
     case "donate":
@@ -46,7 +51,7 @@ export function responseFromWit(intentData, entities, traits) {
       break;
   }
 
-  return handleGibberish();
+  //return handleGibberish();
 }
 
 
