@@ -88,11 +88,11 @@ let postWebhook = (req, res) => {
               console.log("TRAITS", traits);
               // For now, let's reply with another automatic message
 
-              const intent = wit.message(intents);
+              const intent = Promise.resolve(wit.message(intents));
               console.log(intent);
               
               let result = 'default';
-              switch (intents.name) {
+              switch (intent.name) {
                 case "afternoon_greeting":
                   result = "Good afternoon!";
                 case "bye":
