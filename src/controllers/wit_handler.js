@@ -48,11 +48,12 @@ export function responseFromWit(intentData, entitiesData, traitsData) {
   }
 
   else if(traitsData){
+    let traitsName = "default"
     if(traitsData['wit$bye']){
-      const traitsName = "bye"
+      traitsName = "bye"
     }
     else{
-      const traitsName = "greetings"
+      traitsName = "greetings"
     }
     
     switch (traitsName) {
