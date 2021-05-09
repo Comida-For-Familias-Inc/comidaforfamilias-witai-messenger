@@ -84,9 +84,8 @@ let postWebhook = (req, res) => {
             // We received a text message
             // Let's run /message on the text to extract some entities, intents and traits
             wit.message(text).then(({entities, intents, traits}) => {
-              console.log("TEXT", text);
-              console.log("WIT.MESSAGE(text)", wit.message(text).resolve);
-              
+              console.log("MESSAGE RECIEVED", text);
+
               // You can customize your response using these
               console.log("INTENTS", intents);
               console.log("ENTITIES", entities);
@@ -97,7 +96,9 @@ let postWebhook = (req, res) => {
               
               console.log("INTENT[0].NAME: ", intents[0].name);
               
-              const wit_result = wit_handler.responseFromWit(intents, wit.message);
+              //sends the message to wit_handler in the form of intents, entities, and traits
+              //could be changed to send data instead, but why would you do that?
+              const wit_result = wit_handler.responseFromWit(intents, entities, traits);
               console.log(wit_result);
 
               //callSendAPI(sender, `We've received your message: ${text}.`);
@@ -177,7 +178,7 @@ function handleMessage(sender_psid, received_message) {
 */
 
 
-// Handles messaging_postbacks events
+// Handles messaging_postbacks events aka when you send attachments
 function handlePostback(sender_psid, received_postback) {
   let response;
 
@@ -322,7 +323,7 @@ function handleVoiceMessage(sender_psid, received_message){
 
 
 
-/*
+/* THIS IS TO HANDLE VOICE
 function handleMessage(sender_psid, received_message) {
   console.log("Start of handleMessage");
   let response;
