@@ -60,7 +60,7 @@ export function handleGibberish() {
 
 function handleGreeting(){
   let date = new Date();
-  let time = d.getHours();
+  let time = date.getHours();
 
   let greeting = ""
 
