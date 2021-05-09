@@ -113,8 +113,8 @@ export function responseFromWit(intentData, entitiesData, traitsData) {
       break;
     case "organization_purpose":
       return handleOrganizationPurpose();
-      break;*/
-  }
+      break;
+  }*/
 
   //return handleGibberish();
 }
