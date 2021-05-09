@@ -13,7 +13,7 @@ export function responseFromWit(data, wit_message) {
       return handleGreeting();
       break;
     case "bye":
-      return "Thank you for your interest in Comida For Familias. Have a great day!";
+      return "Thank you for your interest in Comida For Familias. Have a great day!"; //make to function
       break;
     case "donate":
       return handleDonate();
@@ -37,7 +37,7 @@ export function responseFromWit(data, wit_message) {
       return handleJoinVolunteer();
       break;
     case "no_prob":
-      return "You are very welcome.";
+      return "You are very welcome."; //make to function
       break;
     case "opt_cpt":
       return handleOptCpt();
@@ -59,11 +59,21 @@ export function handleGibberish() {
 }
 
 function handleGreeting(){
-  let d = new Date();
-  let n = d.toLocaleTimeString();
-  console.log(n);
-  let greeting = "hello its" + n; 
-  return greeting;
+  let date = new Date();
+  let time = d.getHours();
+
+  let greeting = ""
+
+  if (time < 11){
+    return greeting = "good morning"
+  } else if (time < 18){
+    return greeting = "good afternoon"
+  } else if (time < 20){
+    return greeting = "good evening"
+  } else{
+    return greeting = "good night"
+  }
+
 }
 
 
