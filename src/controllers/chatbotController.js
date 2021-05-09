@@ -83,8 +83,8 @@ let postWebhook = (req, res) => {
           } else if (text) {
             // We received a text message
             // Let's run /message on the text to extract some entities, intents and traits
-            wit.message(text).then(({entities, intents, traits}) => {
-              console.log("WIT.MESSAGE(text)", wit.message(text));
+         wit.message   wit.message(text).then(({entities, intents, traits}) => {
+              console.log("WIT.MESSAGE(text)", wit.message(text).resolve;
               
               // You can customize your response using these
               console.log("INTENTS", intents);
@@ -96,7 +96,7 @@ let postWebhook = (req, res) => {
               
               console.log("INTENT[0].NAME: ", intents[0].name);
               
-              const wit_result = wit_handler.responseFromWit(intents, wit.message);
+              const wit_result = wit_handler.responseFromWit(intents, );
 
               //callSendAPI(sender, `We've received your message: ${text}.`);
               callSendAPI(sender, wit_result);
@@ -308,6 +308,15 @@ function handleGibberish() {
       "ask me something like 'How do I join as a volunteer?' or 'What is Comida For Familias for?'"
     );
   }
+
+
+
+
+
+function handleVoiceMessage(sender_psid, received_message){
+  return Promise.resolve("Handling voice message is not enabled yet")
+}
+
 
 
 

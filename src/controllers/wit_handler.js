@@ -4,7 +4,7 @@ export function responseFromWit(data, wit_message) {
   const intentname = data[0].name;
   const intentconfidence = data[0].confidence;
 
-  console.log("data from wit:");
+  console.log("data from wit (wit_handler.js):");
   console.log(JSON.stringify(data));
 
   let result = 'default';
