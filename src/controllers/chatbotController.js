@@ -187,14 +187,18 @@ function firstTrait(nlp, name) {
 function handleMessage(sender_psid, message) {
   // check greeting is here and is confident
   //console.log(message.intents);
+  const greeting0 = firstTrait(message.nlp, 'wit$greetings');
+  const greeting2 = firstTrait(message.nlp, 'wit$afternoon_greeting');
+  
   console.log("TONY TEST");
-  const greeting = firstTrait(message.nlp, 'wit$afternoon_greeting');
-  console.log(greeting)
-  console.log(message.nlp.intents.length);
+  console.log("GREETING0: ", greeting0)
+  console.log("GREETING0: ", greeting2)
+  console.log("MESSAGE: ", message)
+  console.log("MESSAGE.nlp: ", message.nlp)
+  console.log("MESSAGE.NLP.INTENT", message.nlp.intents);
   console.log("END OF TONY TEST");
 
   console.log("data from wit:");
-  
   console.log(JSON.stringify(message));
   //const intent = message.nlp.intents.length > 0 && message.nlp.intents[0] || "__foo__";
 
