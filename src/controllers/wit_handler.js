@@ -4,8 +4,10 @@ export function responseFromWit(intentData, entitiesData, traitsData) {
   const testingintent = intentData.length > 0 && intentData[0] || "__foo__";
   
   console.log("TESTING: INTENT", testingintent);
-  console.log("intentData[0]: ", intentData[0])
-  console.log("TraitsData: ", traitsData)
+  console.log("intentData[0]: ", intentData[0]);
+  console.log("TraitsData: ", traitsData);
+  //let boolean = traitsData.length > 0;
+  console.log("BOOLEAN RESULT: ", traitsData.length > 0)
 
   if (intentData[0]){
     const intent = intentData[0];
