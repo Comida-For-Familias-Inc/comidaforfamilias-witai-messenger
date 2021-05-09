@@ -94,7 +94,6 @@ let postWebhook = (req, res) => {
               console.log("INTENT.NAME: ", intents.name);
               console.log("INTENT[0].NAME: ", intents[0].name);
               
-              
               let result = 'default';
               switch (intents[0].name) {
                 case "afternoon_greeting":
@@ -317,42 +316,10 @@ function handleMessage(sender_psid, message) {
   console.log(JSON.stringify(message));
   //const intent = message.nlp.intents.length > 0 && message.nlp.intents[0] || "__foo__";
 
-  const intent = message.nlp.intents
+  const intent = message.nlp.intents;
   console.log("INTENT IS   ", intent)
   console.log(intent.name);
 
-  switch (intent.name) {
-      case "afternoon_greeting":
-        result = "Good afternoon!";
-      case "bye":
-        result = "Thank you for your interest in Comida For Familias. Have a great day!";
-      case "donate":
-        result = handleDonate(message);
-      case "evening_greeting":
-        result = "Good evening!";
-      case "get_job_list":
-        result = handleGetJobList(message);
-      case "get_location":
-        result = handleGetLocation(message);
-      case "get_news":
-        result = handleGetNews(message);
-      case "get_projects":
-        result = handleGetProjects(message);
-      case "greetings":
-        result = "Hello! Welcome to the Facebook page of Comida For Familias.";
-      case "introduction":
-        result = handleIntroduction(message);
-      case "join_volunteer":
-        result = handleJoinVolunteer(message);
-      case "morning_greeting":
-        result = "Good morning!";
-      case "no_prob":
-        result = "You are very welcome.";
-      case "opt_cpt":
-        result = handleOptCpt(message);
-      case "organization_purpose":
-        result = handleOrganizationPurpose(message);
-    }
     
     //return handleGibberish();
   /*const greeting = firstTrait(message.nlp, 'wit$greetings');
@@ -374,34 +341,34 @@ function handleGibberish() {
 
 //testing functions
 function handleDonate(data){
-  return "Test"
+  return "donate"
 }
 
 function handleGetJobList(data){
-  return "Test"
+  return "get job list"
 }
 
 function handleGetLocation(data){
-  return "Test"
+  return "get location"
 }
 
 function handleGetNews(data){
-  return "Test"
+  return "get news"
 }
 function handleGetProjects(data){
-  return "Test"
+  return "get projects"
 }
 function handleIntroduction(data){
-  return "Test"
+  return "introduction"
 }
 function handleJoinVolunteer(data){
-  return "Test"
+  return "join as volunteer"
 }
 function handleOptCpt(data){
-  return "Test"
+  return "opt"
 }
 function handleOrganizationPurpose(data){
-  return "Test"
+  return "purpose"
 }
 
 /*
