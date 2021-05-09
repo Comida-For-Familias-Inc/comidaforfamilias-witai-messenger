@@ -73,11 +73,13 @@ let postWebhook = (req, res) => {
           // We retrieve the message content
           const {text, attachments} = event.message;
 
+          //if attachment
           if (attachments) {
             // We received an attachment
             // Let's reply with an automatic message
             callSendAPI(sender, 'Sorry I can only process text messages for now.')
-            .catch(console.error);
+            
+          //if text
           } else if (text) {
             // We received a text message
             // Let's run /message on the text to extract some entities, intents and traits

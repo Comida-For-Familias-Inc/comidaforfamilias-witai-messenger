@@ -1,6 +1,8 @@
 //main function for all messages
 export function responseFromWit(data, wit_message) {
+  const intent = data[0];
   const intentname = data[0].name;
+  const intentconfidence = data[0].confidence;
 
   console.log("data from wit:");
   console.log(JSON.stringify(data));
