@@ -186,7 +186,9 @@ function firstTrait(nlp, name) {
 
 function handleMessage(sender_psid, message) {
   // check greeting is here and is confident
-  console.log(message.intents);
+  //console.log(message.intents);
+  console.log("data from wit:");
+  console.log(JSON.stringify(message));
   const intent = message.intents.length > 0 && message.intents[0] || "__foo__";
 
   switch (intent.name) {
