@@ -7,7 +7,7 @@ export function responseFromWit(intentData, entitiesData, traitsData) {
   console.log("intentData[0]: ", intentData[0]);
   console.log("TraitsData: ", traitsData);
   //let boolean = traitsData.length > 0;
-  console.log("BOOLEAN RESULT: ", traitsData.length > 0)
+  console.log("BOOLEAN RESULT: ", traitsData != {})
 
   if (intentData[0]){
     const intent = intentData[0];
@@ -56,7 +56,7 @@ export function responseFromWit(intentData, entitiesData, traitsData) {
     }
   }
 
-  else if(traitsData.length > 0){
+  else if(traitsData != {}){
     let traitsName = "default"
     let confidenceBye = "default"
     let confidenceGreeting = "default"
