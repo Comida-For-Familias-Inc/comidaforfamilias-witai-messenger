@@ -183,7 +183,7 @@ function firstTrait(nlp, name) {
 }
 
 
-function handleMessage(sender_psid, received_message) {
+function handleMessage(sender_psid, message) {
   let response;
 
   const url = "https://api.wit.ai/speech";
@@ -191,11 +191,11 @@ function handleMessage(sender_psid, received_message) {
 
 
     // Checks if the message contains text
-  if (received_message.text) {
+  if (message.text) {
     // Creates the payload for a basic text message, which
     // will be added to the body of our request to the Send API
     response = {
-      "text": `You sent the message: "${received_message.text}". Now send me an attachment!`
+      "text": `You sent the message: "${message.text}". Now send me an attachment!`
     }
   }
     else {
