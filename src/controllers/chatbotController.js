@@ -186,8 +186,8 @@ function firstTrait(nlp, name) {
 
 function handleMessage(sender_psid, message) {
   // check greeting is here and is confident
-  
-   const intent = message.intents.length > 0 && message.intents[0] || "__foo__";
+  console.log(message.intents);
+  const intent = message.intents.length > 0 && message.intents[0] || "__foo__";
 
   switch (intent.name) {
       case "afternoon_greeting":
