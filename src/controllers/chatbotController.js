@@ -89,8 +89,10 @@ let postWebhook = (req, res) => {
               // For now, let's reply with another automatic message
 
               const intent = wit.message(intents);
-              var result = 'default';
-              switch (intent.name) {
+              console.log(intent);
+              
+              let result = 'default';
+              switch (intents.name) {
                 case "afternoon_greeting":
                   result = "Good afternoon!";
                 case "bye":
