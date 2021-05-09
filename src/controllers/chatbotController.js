@@ -6,11 +6,13 @@ import axios from "axios";
 import createBuffer from 'audio-buffer-from';
 // var createBuffer = require('audio-buffer-from')
 
+
+
 const FB_VERIFY_TOKEN = process.env.FB_VERIFY_TOKEN;
 const WIT_TOKEN = process.env.WIT_TOKEN;
 
-let Wit = null;
-let log = null;
+let Wit = require('../config/wit');
+let log = require('../config/log');
 
 
 //wit_handler
@@ -18,7 +20,8 @@ const wit_handler = require("./wit_handler");
 
 // Setting up our bot
 const wit = new Wit({
-  accessToken: WIT_TOKEN
+  accessToken: WIT_TOKEN,
+  logger: new log.Logger(log.INFO)
 });
 
 let test = (req, res) => {
