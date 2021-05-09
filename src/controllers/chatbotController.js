@@ -84,7 +84,7 @@ let postWebhook = (req, res) => {
             // We received a text message
             // Let's run /message on the text to extract some entities, intents and traits
             wit.message(text).then(({entities, intents, traits}) => {
-              console.log("TEXT", text;
+              console.log("TEXT", text);
               console.log("WIT.MESSAGE(text)", wit.message(text).resolve);
               
               // You can customize your response using these
