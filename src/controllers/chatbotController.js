@@ -188,11 +188,11 @@ function handleMessage(sender_psid, message) {
   // check greeting is here and is confident
   //console.log(message.intents);
   const greeting0 = firstTrait(message.nlp, 'wit$greetings');
-  const greeting2 = firstTrait(message.nlp, 'wit$afternoon_greeting');
+  const greeting2 = firstTrait(message.nlp, 'afternoon_greeting');
   
   console.log("TONY TEST");
   console.log("GREETING0: ", greeting0)
-  console.log("GREETING0: ", greeting2)
+  console.log("GREETING2: ", greeting2)
   console.log("MESSAGE: ", message)
   console.log("MESSAGE.nlp: ", message.nlp)
   console.log("MESSAGE.NLP.INTENT", message.nlp.intents);
