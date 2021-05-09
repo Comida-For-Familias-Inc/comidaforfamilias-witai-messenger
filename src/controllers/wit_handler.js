@@ -129,8 +129,8 @@ export function handleGibberish() {
 function handleGreeting(){
   let date = new Date();
   let time = date.getHours();
-  const greetingtest = entities['wit$greetings:greetings'];
-  console.log(greetingstest);
+  //const greetingtest = entities['wit$greetings:greetings'];
+  //console.log(greetingstest);
   
   let greeting = ""
 
