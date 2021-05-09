@@ -94,7 +94,7 @@ let postWebhook = (req, res) => {
               console.log("INTENT[0].NAME: ", intents[0].name);
               
               let result = 'default';
-              switch (intent.name) {
+              switch (intents[0].name) {
                 case "afternoon_greeting":
                   result = "Good afternoon!";
                 case "bye":
