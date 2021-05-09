@@ -10,7 +10,7 @@ const FB_VERIFY_TOKEN = process.env.FB_VERIFY_TOKEN;
 const WIT_TOKEN = process.env.WIT_TOKEN;
 
 //wit_handler
-const handler = require("./wit_handler");
+const wit_handler = require("./wit_handler");
 
 let test = (req, res) => {
   return res.send("HELLO World");
@@ -186,13 +186,88 @@ function firstTrait(nlp, name) {
 
 function handleMessage(sender_psid, message) {
   // check greeting is here and is confident
-  const greeting = firstTrait(message.nlp, 'wit$greetings');
+   const intent = message.intents.length > 0 && message.intents[0] || "__foo__";
+
+  switch (intent.name) {
+      case "afternoon_greeting":
+        return "Good afternoon!";
+      case "bye":
+        return "Thank you for your interest in Comida For Familias. Have a great day!";
+      case "donate":
+        return handleDonate(message);
+      case "evening_greeting":
+        return "Good evening!";
+      case "get_job_list":
+        return handleGetJobList(message);
+      case "get_location":
+        return handleGetLocation(message);
+      case "get_news":
+        return handleGetNews(message);
+      case "get_projects":
+        return handleGetProjects(message);
+      case "greetings":
+        return "Hello! Welcome to the Facebook page of Comida For Familias.";
+      case "introduction":
+        return handleIntroduction(message);
+      case "join_volunteer":
+        return handleJoinVolunteer(message);
+      case "morning_greeting":
+        return "Good morning!";
+      case "no_prob":
+        return "You are very welcome.";
+      case "opt_cpt":
+        return handleOptCpt(message);
+      case "organization_purpose":
+        return handleOrganizationPurpose(message);
+    }
+    
+    return handleGibberish();
+  /*const greeting = firstTrait(message.nlp, 'wit$greetings');
   if (greeting && greeting.confidence > 0.8) {
     callSendAPI(sender_psid,'Hi there!');
   } else { 
     // default logic
     callSendAPI(sender_psid,'default');
+  }*/
+}
+
+
+function handleGibberish() {
+    return Promise.resolve(
+      "ask me something like 'How do I join as a volunteer?' or 'What is Comida For Familias for?'"
+    );
   }
+
+//testing functions
+function handleDonate(data){
+  return "Test"
+}
+
+function handleGetJobList(data){
+  return "Test"
+}
+
+function handleGetLocation(data){
+  return "Test"
+}
+
+function handleGetNews(data){
+  return "Test"
+}
+function handleGetProjects(data){
+  return "Test"
+}
+function handleIntroduction(data){
+  return "Test"
+}
+function handleJoinVolunteer(data){
+  return "Test"
+}
+function handleOptCpt(data){
+  return "Test"
+}
+function handleOrganizationPurpose(data){
+  return "Test"
 }
 
 /*
