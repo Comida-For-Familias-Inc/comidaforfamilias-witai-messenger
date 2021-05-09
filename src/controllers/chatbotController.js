@@ -183,7 +183,7 @@ function firstTrait(nlp, name) {
 }
 
 
-function handleMessage(sender_psid, message) {
+function handleMessage(sender_psid, received_message) {
   let response;
 
   const url = "https://api.wit.ai/speech";
