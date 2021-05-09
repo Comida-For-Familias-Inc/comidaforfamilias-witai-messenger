@@ -186,9 +186,9 @@ function handleGreeting() {
 //testing functions
 function handleDonate() {
   let paypal = "Paypal";
-  let paypalLink = string.link("https://www.paypal.com/us/fundraiser/charity/3792494");
+  let paypalLink = "https://www.paypal.com/us/fundraiser/charity/3792494";
   
-  let message = "How would you like to donate?\n" + paypalLink;
+  let message = "The best way to donate to us is using Paypal.\n" + paypalLink;
 
   return message
 }
