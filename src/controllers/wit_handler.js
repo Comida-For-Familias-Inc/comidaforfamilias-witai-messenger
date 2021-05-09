@@ -7,7 +7,7 @@ export function responseFromWit(intentData, entitiesData, traitsData) {
   console.log("intentData[0]: ", intentData[0]);
   console.log("TraitsData: ", traitsData);
   //let boolean = traitsData.length > 0;
-  console.log("BOOLEAN RESULT: ", traitsData != {})
+  console.log("BOOLEAN RESULT: ", traitsData['wit$bye'] && traitsData['wit$greetings'])
 
   if (intentData[0]){
     const intent = intentData[0];
@@ -61,19 +61,26 @@ export function responseFromWit(intentData, entitiesData, traitsData) {
     let confidenceBye = "default"
     let confidenceGreeting = "default"
 
-    if(traitsData['wit$bye']){
+    if(traitsData['wit$bye'] && traitsData['wit$greetings']){
       confidenceBye = traitsData['wit$bye']['confidence']
-    }
-    if(traitsData['wit$greetings']){
       confidenceGreeting = traitsData['wit$greetings']['confidence']
+      
+      if(confidenceBye > confidenceGreeting){
+        traitsName = "bye"
+      }
+      else{
+        traitsName = "greetings"
+      }
     }
 
-    if(traitsData['wit$bye'] && confidenceBye > confidenceGreeting){
+    else if(traitsData['wit$bye'] && !traitsData['wit$greetings']){
       traitsName = "bye"
     }
+
     else{
       traitsName = "greetings"
     }
+    
     
     switch (traitsName) {
     case "greetings":
@@ -142,7 +149,8 @@ export function handleGibberish() {
 
 function handleGreeting(){
   let date = new Date();
-  let time = date.getHours();
+  var offset = new Date().getTimezoneOffset();
+  let time = offset.getHours();
   //const greetingtest = entities['wit$greetings:greetings'];
   //console.log(greetingstest);
   
