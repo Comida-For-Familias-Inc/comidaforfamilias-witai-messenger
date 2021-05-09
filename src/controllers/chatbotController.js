@@ -82,6 +82,8 @@ let postWebhook = (req, res) => {
             // We received a text message
             // Let's run /message on the text to extract some entities, intents and traits
             wit.message(text).then(({entities, intents, traits}) => {
+              console.log("WIT.MESSAGE(text)", wit.message(text));
+              
               // You can customize your response using these
               console.log("INTENTS", intents);
               console.log("ENTITIES", entities);
@@ -89,9 +91,9 @@ let postWebhook = (req, res) => {
               // For now, let's reply with another automatic message
 
               //const intent = Promise.resolve(wit.message(intents));
-              console.log("INTENT: ", intent);
               console.log("INTENT.NAME: ", intents.name);
               console.log("INTENT[0].NAME: ", intents[0].name);
+              
               
               let result = 'default';
               switch (intents[0].name) {
@@ -100,31 +102,31 @@ let postWebhook = (req, res) => {
                 case "bye":
                   result = "Thank you for your interest in Comida For Familias. Have a great day!";
                 case "donate":
-                  result = handleDonate(message);
+                  result = handleDonate(wit.message);
                 case "evening_greeting":
                   result = "Good evening!";
                 case "get_job_list":
-                  result = handleGetJobList(message);
+                  result = handleGetJobList(wit.message);
                 case "get_location":
-                  result = handleGetLocation(message);
+                  result = handleGetLocation(wit.message);
                 case "get_news":
-                  result = handleGetNews(message);
+                  result = handleGetNews(wit.message);
                 case "get_projects":
-                  result = handleGetProjects(message);
+                  result = handleGetProjects(wit.message);
                 case "greetings":
                   result = "Hello! Welcome to the Facebook page of Comida For Familias.";
                 case "introduction":
-                  result = handleIntroduction(message);
+                  result = handleIntroduction(wit.message);
                 case "join_volunteer":
-                  result = handleJoinVolunteer(message);
+                  result = handleJoinVolunteer(wit.message);
                 case "morning_greeting":
                   result = "Good morning!";
                 case "no_prob":
                   result = "You are very welcome.";
                 case "opt_cpt":
-                  result = handleOptCpt(message);
+                  result = handleOptCpt(wit.message);
                 case "organization_purpose":
-                  result = handleOrganizationPurpose(message);
+                  result = handleOrganizationPurpose(wit.message);
             }
 
               //callSendAPI(sender, `We've received your message: ${text}.`);
