@@ -12,9 +12,9 @@ export function responseFromWit(intentData, entitiesData, traitsData) {
   console.log("intentData[0]: ", intentData[0]);
   console.log("TraitsData: ", traitsData);
   //let boolean = traitsData.length > 0;
-  console.log("BOOLEAN RESULT: ", traitsData['wit$bye'] && traitsData['wit$greetings'])
+  console.log("BOOLEAN RESULT: ", traitsData['wit$bye'] && traitsData['wit$greetings']);
 
-  if(intentData[0] == undefined && traitsData = {}){
+  if (intentData[0] is undefined && traitsData = {}){
     return handleGibberish();
   }
 
