@@ -197,7 +197,8 @@ function handleMessage(sender_psid, message) {
     response = {
       "text": `You sent the message: "${received_message.text}". Now send me an attachment!`
     }
-    else{
+  }
+    else {
 
       axios
         .post(url, buffer, {
