@@ -52,7 +52,7 @@ export function responseFromWit(intentData, entitiesData, traitsData) {
     }
   }
 
-  else if(traitsData){
+  else if(traitsData.length > 0){
     let traitsName = "default"
     if(traitsData['wit$bye']){
       traitsName = "bye"
