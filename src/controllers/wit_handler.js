@@ -122,8 +122,7 @@ export function responseFromWit(intentData, entitiesData, traitsData) {
 
 //function for handling meaningless messages
 export function handleGibberish() {
-  return "ask me something like 'How do I join as a volunteer?' or 'What is Comida For Familias for?'"
-  );
+  return "ask me something like 'How do I join as a volunteer?' or 'What is Comida For Familias for?'";
 }
 
 function handleGreeting(){
