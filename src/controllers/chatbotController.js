@@ -98,34 +98,49 @@ let postWebhook = (req, res) => {
               switch (intents[0].name) {
                 case "afternoon_greeting":
                   result = "Good afternoon!";
+                  break;
                 case "bye":
                   result = "Thank you for your interest in Comida For Familias. Have a great day!";
+                  break;
                 case "donate":
                   result = handleDonate(wit.message);
+                  break;
                 case "evening_greeting":
                   result = "Good evening!";
+                  break;
                 case "get_job_list":
                   result = handleGetJobList(wit.message);
+                  break;
                 case "get_location":
                   result = handleGetLocation(wit.message);
+                  break;
                 case "get_news":
                   result = handleGetNews(wit.message);
+                  break;
                 case "get_projects":
                   result = handleGetProjects(wit.message);
+                  break;
                 case "greetings":
                   result = "Hello! Welcome to the Facebook page of Comida For Familias.";
+                  break;
                 case "introduction":
                   result = handleIntroduction(wit.message);
+                  break;
                 case "join_volunteer":
                   result = handleJoinVolunteer(wit.message);
+                  break;
                 case "morning_greeting":
                   result = "Good morning!";
+                  break;
                 case "no_prob":
                   result = "You are very welcome.";
+                  break;
                 case "opt_cpt":
                   result = handleOptCpt(wit.message);
+                  break;
                 case "organization_purpose":
                   result = handleOrganizationPurpose(wit.message);
+                  break;
             }
 
               //callSendAPI(sender, `We've received your message: ${text}.`);
@@ -267,6 +282,7 @@ function handleMessage(sender_psid, message) {
   let response;
 
   const url = "https://api.wit.ai/speech";
+  break;
   const witToken = process.env.WIT_TOKEN; 
 
 
