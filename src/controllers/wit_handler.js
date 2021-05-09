@@ -1,7 +1,7 @@
 //main function for all messages
 export function responseFromWit(intentData, entitiesData, traitsData) {
   //testing
-  const testingintent = intentData.length > 0 && intentsData[0] || "__foo__";
+  const testingintent = intentData.length > 0 && intentData[0] || "__foo__";
   
   console.log("TESTING: INTENT", testingintent);
   console.log("intentData[0]: ", intentData[0])
