@@ -191,14 +191,14 @@ function handleMessage(sender_psid, message) {
 
 
     // Checks if the message contains text
-  if (message.text) {
+  /*if (message.text) {
     // Creates the payload for a basic text message, which
     // will be added to the body of our request to the Send API
     response = {
       "text": `You sent the message: "${message.text}". Now send me an attachment!`
     }
-  }
-    else {
+  }*/
+    //else {
 
       axios
         .post(url, buffer, {
@@ -217,7 +217,7 @@ function handleMessage(sender_psid, message) {
           console.log("error sending to wit: " + e);
           // res.json({ error: e.message });
         });
-    }
+    //}
 
   // check greeting is here and is confident
   //console.log(message.intents);
