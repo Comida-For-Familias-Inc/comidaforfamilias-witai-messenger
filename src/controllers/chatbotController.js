@@ -18,7 +18,7 @@ const wit_handler = require("./wit_handler");
 
 // Setting up our bot
 const wit = new Wit({
-  accessToken: WIT_TOKEN,
+  accessToken: WIT_TOKEN
 });
 
 let test = (req, res) => {
