@@ -90,36 +90,51 @@ let postWebhook = (req, res) => {
 
               const intent = wit.message(intents)
               switch (intent.name) {
-              case "afternoon_greeting":
-                result = "Good afternoon!";
-              case "bye":
-                result = "Thank you for your interest in Comida For Familias. Have a great day!";
-              case "donate":
-                result = handleDonate(message);
-              case "evening_greeting":
-                result = "Good evening!";
-              case "get_job_list":
-                result = handleGetJobList(message);
-              case "get_location":
-                result = handleGetLocation(message);
-              case "get_news":
-                result = handleGetNews(message);
-              case "get_projects":
-                result = handleGetProjects(message);
-              case "greetings":
-                result = "Hello! Welcome to the Facebook page of Comida For Familias.";
-              case "introduction":
-                result = handleIntroduction(message);
-              case "join_volunteer":
-                result = handleJoinVolunteer(message);
-              case "morning_greeting":
-                result = "Good morning!";
-              case "no_prob":
-                result = "You are very welcome.";
-              case "opt_cpt":
-                result = handleOptCpt(message);
-              case "organization_purpose":
-                result = handleOrganizationPurpose(message);
+                case "afternoon_greeting":
+                  result = "Good afternoon!";
+                  break;
+                case "bye":
+                  result = "Thank you for your interest in Comida For Familias. Have a great day!";
+                  break;
+                case "donate":
+                  result = handleDonate(message);
+                  break;
+                case "evening_greeting":
+                  result = "Good evening!";
+                  break;
+                case "get_job_list":
+                  result = handleGetJobList(message);
+                  break;
+                case "get_location":
+                  result = handleGetLocation(message);
+                  break;
+                case "get_news":
+                  result = handleGetNews(message);
+                  break;
+                case "get_projects":
+                  result = handleGetProjects(message);
+                  break;
+                case "greetings":
+                  result = "Hello! Welcome to the Facebook page of Comida For Familias.";
+                  break;
+                case "introduction":
+                  result = handleIntroduction(message);
+                  break;
+                case "join_volunteer":
+                  result = handleJoinVolunteer(message);
+                  break;
+                case "morning_greeting":
+                  result = "Good morning!";
+                  break;
+                case "no_prob":
+                  result = "You are very welcome.";
+                  break;
+                case "opt_cpt":
+                  result = handleOptCpt(message);
+                  break;
+                case "organization_purpose":
+                  result = handleOrganizationPurpose(message);
+                  break;
             }
 
               //callSendAPI(sender, `We've received your message: ${text}.`);
