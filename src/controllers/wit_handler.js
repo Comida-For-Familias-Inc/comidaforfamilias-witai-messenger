@@ -56,7 +56,17 @@ export function responseFromWit(intentData, entitiesData, traitsData) {
 
   else if(traitsData.length > 0){
     let traitsName = "default"
+    let confidenceBye = "default"
+    let confidenceGreeting = "default"
+
     if(traitsData['wit$bye']){
+      confidenceBye = traitsData['wit$bye']['confidence']
+    }
+    if(traitsData['wit$greetings']){
+      confidenceGreeting = traitsData['wit$greetings']['confidence']
+    }
+
+    if(traitsData['wit$bye'] && confidenceBye > confidenceGreeting){
       traitsName = "bye"
     }
     else{
