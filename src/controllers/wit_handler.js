@@ -5,7 +5,6 @@ export function responseFromWit(intentData, entities, traits) {
   const intentconfidence = intentData[0].confidence;
 
   console.log("data from wit (wit_handler.js):");
-  console.log(JSON.stringify(data));
 
   let result = 'default';
   switch (intentname) {
