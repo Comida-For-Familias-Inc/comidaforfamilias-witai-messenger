@@ -190,7 +190,7 @@ function handleDonate() {
   
   let message = "The best way to donate to us is using Paypal.\n" + paypalLink;
 
-  return message
+  return message;
 }
 
 function handleGetJobList() {
@@ -212,21 +212,21 @@ function handleGetJobList() {
 }
 
 function handleGetLocation() {
-  let message = "The office is located at: \n" + "131 Sunset Avenue, Suite E, PMB 254 Suisun City, CA, 94585"
+  let message = "The office is located at: \n" + "131 Sunset Avenue, Suite E, PMB 254 Suisun City, CA, 94585";
   return message;
 }
 
 function handleGetNews() {
-  let link = "https://comidaforfamilias.org/newsevents/news"
+  let link = "https://comidaforfamilias.org/newsevents/news";
   
-  let message = "We have several articles and videos uploaded, including:\nFigma Fundamentals: Baseline Grids\n[Algorithms In Brief]: What Is Binary Search?\nCalifornia Ballot Propositions With PEP\n"+"To find out more, please click on the following link:\n"
+  let message = "We have several articles and videos uploaded, including:\nFigma Fundamentals: Baseline Grids\n[Algorithms In Brief]: What Is Binary Search?\nCalifornia Ballot Propositions With PEP\n"+"To find out more, please click on the following link:\n";
   
   return message + link;
 }
 function handleGetProjects() {
   let pageLink = "https://comidaforfamilias.org/projectList";
 
-  let message = ""
+  let message = "";
   
   //message if they ask for current projects
   message = "Some projects we are currently working on are: \nTasteMatch\nCalorieHacker\nA Messenger bot using wit.ai\n" + "To Find out more click on the link.\n" + pageLink;
@@ -235,18 +235,21 @@ function handleGetProjects() {
   return message;
 }
 function handleIntroduction() {
-  message = 'Hola! We are Comida For Familias, Inc! The scientific research organization focused on connecting communities to distribute food and resources through the use of technology. Ask us what is our purpose and how you can join our familia!`
+  let message = "";
 
-  return 
+  message = "Hola! We are Comida For Familias, Inc! The scientific research organization focused on connecting communities to distribute food and resources through the use of technology. Ask us what is our purpose and how you can join our familia!";
+
+  return message;
 }
+
 function handleJoinVolunteer() {
-  let message = "To join as a volunteer you will have to find the position you want to be supervised for and fill out a form. "
+  let message = "To join as a volunteer you will have to find the position you want to be supervised for and fill out a form. ";
   return message;
 }
 function handleOptCpt() {
   let link = "https://comidaforfamilias.org/f1opt"
-  let message = "F-1 students can volunteer and train with Comida For Familias, Inc. to maintain status and extend their stay in the US. The service volunteers/trainees provide must be related to the foreign national's degree program.\n" + "For more details, please click the following link:\n"
-  return message + link
+  let message = "F-1 students can volunteer and train with Comida For Familias, Inc. to maintain status and extend their stay in the US. The service volunteers/trainees provide must be related to the foreign national's degree program.\n" + "For more details, please click the following link:\n";
+  return message + link;
 }
 function handleOrganizationPurpose() {
   let pageLink = "https://comidaforfamilias.org";
